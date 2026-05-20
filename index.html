@@ -426,6 +426,39 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 .mas-t { font-size: 14px; font-weight: 700; color: var(--n-0); }
 .mas-d { font-size: 12px; color: rgba(255,255,255,.35); line-height: 1.55; }
 
+/* ─── PANEL: PROBLEM (text only) ────────────────── */
+.prob-text-wrap {
+  height: 100%; display: flex; flex-direction: column;
+  justify-content: center; max-width: 720px; margin: 0 auto;
+  gap: 40px; padding: 8px 0;
+}
+.prob-headline { display: flex; flex-direction: column; gap: 10px; }
+.prob-label {
+  font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase;
+  letter-spacing: 2px; opacity: .8;
+}
+.prob-h2 {
+  font-size: 38px; font-weight: 800; color: var(--n-0);
+  letter-spacing: -1px; line-height: 1.05;
+}
+.prob-h2 em { color: var(--cyan); font-style: normal; text-shadow: 0 0 20px rgba(74,201,227,.6); }
+.prob-lead {
+  font-size: 16px; color: rgba(255,255,255,.45); line-height: 1.65;
+  max-width: 580px;
+}
+.prob-points { display: flex; flex-direction: column; gap: 18px; }
+.prob-point {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.prob-point:last-child { border-bottom: none; padding-bottom: 0; }
+.prob-num {
+  font-size: 11px; font-weight: 800; color: var(--cyan); opacity: .6;
+  letter-spacing: 1px; flex-shrink: 0; margin-top: 2px; min-width: 24px;
+}
+.prob-pt { font-size: 15px; font-weight: 700; color: var(--n-0); margin-bottom: 4px; }
+.prob-pd { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.6; }
+
 /* ─── PANEL: DEMO ────────────────────────────────── */
 .demo-wrap { display: flex; gap: 16px; height: 100%; }
 .demo-screen {
@@ -456,7 +489,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
   text-shadow: 0 0 30px rgba(74,201,227,.6), 0 0 60px rgba(74,201,227,.3);
   animation: logopulse 3s ease-in-out infinite;
 }
-.demo-big { font-size: 22px; font-weight: 800; color: var(--n-0); letter-spacing: -.4px; }
+.demo-big { font-size: 48px; font-weight: 800; color: var(--n-0); letter-spacing: -1.5px; line-height: 1; text-align: center; }
 .demo-small { font-size: 13px; color: rgba(255,255,255,.3); }
 .demo-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 7px; margin-top: 8px;
@@ -542,7 +575,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
   <div class="tabbar-inner">
     <button class="tb on"  onclick="go('equipo',this)"><i class="bi bi-people-fill"></i> Team</button>
     <button class="tb"     onclick="go('problema',this)"><i class="bi bi-exclamation-triangle-fill"></i> Problem</button>
-    <button class="tb"     onclick="go('solucion',this)"><i class="bi bi-lightning-charge-fill"></i> Solution <span class="tb-chip">NEW</span></button>
+    <button class="tb"     onclick="go('solucion',this)"><i class="bi bi-lightning-charge-fill"></i> Solution</button>
     <button class="tb"     onclick="go('impacto',this)"><i class="bi bi-graph-up-arrow"></i> Impact</button>
     <button class="tb"     onclick="go('demo',this)"><i class="bi bi-play-btn-fill"></i> Demo</button>
     <button class="tb"     onclick="go('thanks',this)"><i class="bi bi-heart-fill"></i> Thank You</button>
@@ -615,41 +648,42 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- PROBLEM -->
   <div id="pnl-problema" class="pnl">
-    <div class="pr-grid">
+    <div class="prob-text-wrap">
 
-      <div class="pr-banner">
-        <div class="pr-ico"><i class="bi bi-person-x-fill"></i></div>
-        <div>
-          <div class="pr-bh">Aplazo's Silent Churn</div>
-          <p class="pr-bt">A significant share of approved users never reach their second transaction. Credit is approved, limit assigned — but real activation never happens. This means direct GMV loss and wasted CAC from acquisition spend.</p>
-        </div>
+      <div class="prob-headline">
+        <div class="prob-label">The Problem</div>
+        <h2 class="prob-h2">Users drop off <em>before they even start</em></h2>
+        <p class="prob-lead">A large number of users begin the Aplazo registration but never complete it — leaving potential credit lines unused and GMV on the table before the relationship even begins.</p>
       </div>
 
-      <div class="pr-causes" style="grid-column:1/-1">
-        <div class="coltitle">Why do they leave without buying?</div>
-        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>Onboarding friction:</b> Users can't find a merchant at the moment of approval.</div></div>
-        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>Generic messaging:</b> Communications not tailored to user history or behavior.</div></div>
-        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>Wrong timing:</b> Campaigns miss the user's actual purchase intent windows.</div></div>
-        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>No smart nudges:</b> No system detects early abandonment signals before users churn.</div></div>
-      </div>
-
-      <div class="pr-segs" style="grid-column:1/-1">
-        <div class="coltitle">Priority segments</div>
-        <div class="sbar">
-          <div class="sbar-top"><span>Approved — no first purchase</span><span style="color:var(--red);font-size:10px">High</span></div>
-          <div class="strack"><div class="sfill" style="width:85%"></div></div>
+      <div class="prob-points">
+        <div class="prob-point">
+          <span class="prob-num">01</span>
+          <div>
+            <div class="prob-pt">Lack of information at the right moment</div>
+            <div class="prob-pd">Users have doubts during registration but find no answers in the flow. Without clarity, they abandon rather than take the risk of continuing.</div>
+          </div>
         </div>
-        <div class="sbar">
-          <div class="sbar-top"><span>1 purchase, inactive 30+ days</span><span style="color:var(--red);font-size:10px">High</span></div>
-          <div class="strack"><div class="sfill" style="width:70%"></div></div>
+        <div class="prob-point">
+          <span class="prob-num">02</span>
+          <div>
+            <div class="prob-pt">Security concerns around personal data</div>
+            <div class="prob-pd">Many users are unsure whether it is safe to enter their personal and financial information. The lack of visible trust signals increases hesitation.</div>
+          </div>
         </div>
-        <div class="sbar">
-          <div class="sbar-top"><span>2–3 purchases, inactive 60+ days</span><span style="color:var(--yellow);font-size:10px">Medium</span></div>
-          <div class="strack"><div class="sfill" style="width:45%"></div></div>
+        <div class="prob-point">
+          <span class="prob-num">03</span>
+          <div>
+            <div class="prob-pt">ID not at hand — friction kills conversion</div>
+            <div class="prob-pd">Users who don't have their INE or passport nearby at that exact moment simply close the app. No reminder, no second chance, no recovery flow.</div>
+          </div>
         </div>
-        <div class="sbar">
-          <div class="sbar-top"><span>Frequent actives (retain)</span><span style="color:var(--green);font-size:10px">Low</span></div>
-          <div class="strack"><div class="sfill" style="width:20%;background:linear-gradient(90deg,#3aad12,var(--green))"></div></div>
+        <div class="prob-point">
+          <span class="prob-num">04</span>
+          <div>
+            <div class="prob-pt">No follow-up to create the need</div>
+            <div class="prob-pd">There is no intelligent reengagement sequence that reminds users why Aplazo is worth completing. The urgency and desire to register and buy are never built.</div>
+          </div>
         </div>
       </div>
 
@@ -804,6 +838,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
         <div class="demo-body">
           <div class="demo-placeholder">
             <i class="bi bi-play-circle-fill"></i>
+            <p class="demo-big">Live Demo</p>
           </div>
         </div>
       </div>
