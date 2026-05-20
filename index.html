@@ -319,20 +319,45 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 .strack { height: 6px; background: rgba(255,255,255,.08); border-radius: 100px; overflow: hidden; }
 .sfill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, #2BB8D0, var(--cyan)); box-shadow: 0 0 8px rgba(74,201,227,.4); }
 
-/* ─── PANEL: SOLUCIÓN ────────────────────────────── */
-.sol-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr 1fr; gap: 13px; height: 100%; }
-
-.sol-banner {
-  grid-column: 1/-1;
-  background: rgba(74,201,227,.06);
-  border: 1px solid rgba(74,201,227,.18); border-radius: 14px;
-  padding: 18px 22px; display: flex; gap: 18px; align-items: flex-start;
+/* ─── PANEL: SOLUTION ────────────────────────────── */
+.sol-scroll { display: flex; flex-direction: column; gap: 22px; }
+.sol-section { display: flex; flex-direction: column; gap: 12px; }
+.sol-section-label {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,.35);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  display: flex; align-items: center; gap: 7px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.sol-section-label i { color: var(--cyan); font-size: 12px; }
+.sol-proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sol-proof-card {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.07); border-radius: 13px;
+  padding: 16px 18px; transition: border-color .2s;
+}
+.sol-proof-card:hover { border-color: rgba(74,201,227,.35); }
+.sol-proof-val { font-size: 36px; font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 4px; text-shadow: 0 0 20px rgba(74,201,227,.6); }
+.sol-proof-title { font-size: 13px; font-weight: 700; color: var(--n-0); margin-bottom: 6px; }
+.sol-proof-desc { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.55; }
+.sol-proof-desc strong { color: var(--n-0); }
+.sol-banner-new {
+  background: rgba(74,201,227,.06); border: 1px solid rgba(74,201,227,.18); border-radius: 14px;
+  padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start;
 }
 .sol-ico {
-  width: 50px; height: 50px; background: rgba(74,201,227,.12); border-radius: 12px;
+  width: 46px; height: 46px; background: rgba(74,201,227,.12); border-radius: 12px;
   border: 1px solid rgba(74,201,227,.25); flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--cyan);
+  display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--cyan);
 }
+.sol-table-wrap { overflow-x: auto; border-radius: 13px; border: 1px solid rgba(255,255,255,.07); }
+.sol-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sol-table thead tr { background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.08); }
+.sol-table th { padding: 11px 16px; text-align: left; font-size: 11px; font-weight: 700; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: 1px; }
+.sol-table td { padding: 12px 16px; color: rgba(255,255,255,.5); border-bottom: 1px solid rgba(255,255,255,.05); }
+.sol-table tr:last-child td { border-bottom: none; }
+.sol-table td:first-child { color: rgba(255,255,255,.7); font-weight: 500; }
+.sol-tr-base td { color: rgba(255,255,255,.3) !important; }
+.sol-td-hl { color: var(--cyan) !important; font-weight: 700; }
+.sol-td-top { color: var(--cyan) !important; font-weight: 800; font-size: 14px; text-shadow: 0 0 12px rgba(74,201,227,.5); }
 .fc {
   background: var(--black-3); border: 1px solid rgba(255,255,255,.07); border-radius: 13px;
   padding: 16px 18px; box-shadow: var(--s1);
@@ -446,7 +471,15 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
   font-size: 16px; color: rgba(255,255,255,.45); line-height: 1.65;
   max-width: 580px;
 }
-.prob-points { display: flex; flex-direction: column; gap: 18px; }
+.prob-points { display: flex; flex-direction: column; gap: 14px; }
+.prob-block { display: flex; flex-direction: column; gap: 12px; }
+.prob-block-title {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,.35);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  display: flex; align-items: center; gap: 7px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.prob-block-title i { color: var(--cyan); font-size: 12px; }
 .prob-point {
   display: flex; align-items: flex-start; gap: 18px;
   padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.05);
@@ -458,6 +491,29 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 }
 .prob-pt { font-size: 15px; font-weight: 700; color: var(--n-0); margin-bottom: 4px; }
 .prob-pd { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.6; }
+
+/* ─── PANEL: IMPACT ──────────────────────────────── */
+.imp-wrap {
+  height: 100%; display: flex; flex-direction: column;
+  justify-content: center; max-width: 820px; margin: 0 auto;
+  gap: 24px; padding: 8px 0;
+}
+.imp-headline { display: flex; flex-direction: column; gap: 8px; }
+.imp-cards {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+}
+.imp-stat {
+  background: var(--black-3); border: 1px solid rgba(74,201,227,.15);
+  border-radius: 13px; padding: 18px 20px; text-align: center;
+  transition: border-color .2s, transform .2s;
+}
+.imp-stat:hover { border-color: rgba(74,201,227,.4); transform: translateY(-2px); }
+.imp-stat-val {
+  font-size: 32px; font-weight: 800; color: var(--cyan); line-height: 1;
+  text-shadow: 0 0 20px rgba(74,201,227,.6), 0 0 40px rgba(74,201,227,.25);
+  margin-bottom: 6px;
+}
+.imp-stat-lbl { font-size: 12px; color: rgba(255,255,255,.4); font-weight: 500; line-height: 1.4; }
 
 /* ─── PANEL: DEMO ────────────────────────────────── */
 .demo-wrap { display: flex; gap: 16px; height: 100%; }
@@ -648,41 +704,50 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- PROBLEM -->
   <div id="pnl-problema" class="pnl">
-    <div class="prob-text-wrap">
+    <div class="prob-text-wrap" style="max-width:800px;">
 
       <div class="prob-headline">
         <div class="prob-label">The Problem</div>
-        <h2 class="prob-h2">Users drop off <em>before they even start</em></h2>
-        <p class="prob-lead">A large number of users begin the Aplazo registration but never complete it — leaving potential credit lines unused and GMV on the table before the relationship even begins.</p>
+        <h2 class="prob-h2">The digital channel <em>leaves users alone</em></h2>
+        <p class="prob-lead">Unlike a physical store, in digital there's nobody walking the user through registration. The result: massive losses at two critical funnel points — without the product ever failing.</p>
       </div>
 
-      <div class="prob-points">
-        <div class="prob-point">
-          <span class="prob-num">01</span>
-          <div>
-            <div class="prob-pt">Lack of information at the right moment</div>
-            <div class="prob-pd">Users have doubts during registration but find no answers in the flow. Without clarity, they abandon rather than take the risk of continuing.</div>
+      <div class="prob-block">
+        <div class="prob-block-title"><i class="bi bi-funnel-fill"></i> Where the funnel drops (no rejections on our end)</div>
+        <div class="prob-points">
+          <div class="prob-point">
+            <span class="prob-num">01</span>
+            <div>
+              <div class="prob-pt">Started → KYC Evaluation: <em style="color:var(--cyan)">−32,762 users/month (−25%)</em></div>
+              <div class="prob-pd">Users abandon before attempting anything. Zero technical friction. These are the two moments where the product doesn't fail — and it's not a rejection.</div>
+            </div>
           </div>
         </div>
-        <div class="prob-point">
-          <span class="prob-num">02</span>
-          <div>
-            <div class="prob-pt">Security concerns around personal data</div>
-            <div class="prob-pd">Many users are unsure whether it is safe to enter their personal and financial information. The lack of visible trust signals increases hesitation.</div>
+      </div>
+
+      <div class="prob-block">
+        <div class="prob-block-title"><i class="bi bi-search"></i> Why do they leave? The evidence</div>
+        <div class="prob-points">
+          <div class="prob-point">
+            <span class="prob-num">02</span>
+            <div>
+              <div class="prob-pt">Card Barrier Study <span style="color:rgba(255,255,255,.35);font-weight:500">(n=92)</span></div>
+              <div class="prob-pd"><span style="color:var(--cyan);font-weight:700">26%</span> don't understand why their data is being requested. <span style="color:var(--cyan);font-weight:700">22%</span> fear fraud. "I'll do it later" is an escape mechanism — not a lack of time.</div>
+            </div>
           </div>
-        </div>
-        <div class="prob-point">
-          <span class="prob-num">03</span>
-          <div>
-            <div class="prob-pt">ID not at hand — friction kills conversion</div>
-            <div class="prob-pd">Users who don't have their INE or passport nearby at that exact moment simply close the app. No reminder, no second chance, no recovery flow.</div>
+          <div class="prob-point">
+            <span class="prob-num">03</span>
+            <div>
+              <div class="prob-pt">Support tickets: <span style="color:var(--cyan)">21,391/month</span></div>
+              <div class="prob-pd">19.9% of total support volume are product understanding questions — users who arrived without knowing what Aplazo is.</div>
+            </div>
           </div>
-        </div>
-        <div class="prob-point">
-          <span class="prob-num">04</span>
-          <div>
-            <div class="prob-pt">No follow-up to create the need</div>
-            <div class="prob-pd">There is no intelligent reengagement sequence that reminds users why Aplazo is worth completing. The urgency and desire to register and buy are never built.</div>
+          <div class="prob-point">
+            <span class="prob-num">04</span>
+            <div>
+              <div class="prob-pt">Central hypothesis</div>
+              <div class="prob-pd" style="color:rgba(255,255,255,.65)">It's not technical friction — it's a lack of <strong style="color:var(--n-0)">intent</strong> and <strong style="color:var(--n-0)">guidance</strong>.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -692,45 +757,66 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- SOLUTION -->
   <div id="pnl-solucion" class="pnl">
-    <div class="sol-grid">
+    <div class="sol-scroll">
 
-      <div class="sol-banner">
-        <div class="sol-ico"><i class="bi bi-robot"></i></div>
-        <div>
-          <div class="pr-bh">How does ActivaBot work?</div>
-          <p class="pr-bt">It combines propensity models, real-time behavioral signals and omnichannel messaging to reach the right user, with the right message, at the exact right moment. BigQuery + CleverTap + Claude API orchestrate fully automated reactivation journeys.</p>
+      <!-- Proof that guidance works -->
+      <div class="sol-section">
+        <div class="sol-section-label"><i class="bi bi-check-circle-fill"></i> Proof that guidance works</div>
+        <div class="sol-proof-grid">
+          <div class="sol-proof-card">
+            <div class="sol-proof-val">9x</div>
+            <div class="sol-proof-title">Registration completion</div>
+            <div class="sol-proof-desc">Users with full informational guidance complete at <strong>36.26%</strong> vs <strong>3.97%</strong> organic — 9x more.</div>
+          </div>
+          <div class="sol-proof-card">
+            <div class="sol-proof-val">6x</div>
+            <div class="sol-proof-title">Ambassador storefronts</div>
+            <div class="sol-proof-desc">Storefronts with an ambassador: <strong>6.1 new customers/store/month</strong> vs <strong>1.0 in BAU</strong> — 6x more conversion.</div>
+          </div>
+          <div class="sol-proof-card" style="grid-column:1/-1">
+            <div class="sol-proof-desc" style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;">The mechanism is the same: <strong style="color:var(--n-0)">someone who explains, builds trust and accompanies at the right moment.</strong></div>
+          </div>
         </div>
       </div>
 
-      <div class="fc">
-        <div class="fi"><i class="bi bi-graph-up-arrow"></i></div>
-        <div class="ft">Propensity Model</div>
-        <p class="fd">Predicts which users are most likely to reactivate in the next 48h using BigQuery behavioral signals.</p>
+      <!-- Scale problem -->
+      <div class="sol-section">
+        <div class="sol-section-label"><i class="bi bi-exclamation-triangle-fill"></i> The scale problem</div>
+        <div class="prob-points">
+          <div class="prob-point">
+            <span class="prob-num">01</span>
+            <div>
+              <div class="prob-pt">Only 10% of users contact support during registration</div>
+              <div class="prob-pd">The vast majority struggle alone — without asking for help.</div>
+            </div>
+          </div>
+          <div class="prob-point">
+            <span class="prob-num">02</span>
+            <div>
+              <div class="prob-pt">Ambassadors only operate in physical stores</div>
+              <div class="prob-pd">The most effective conversion tool doesn't exist in the digital channel.</div>
+            </div>
+          </div>
+          <div class="prob-point">
+            <span class="prob-num">03</span>
+            <div>
+              <div class="prob-pt"><span style="color:var(--cyan);font-weight:700">~124,000 users/month</span> get stuck in signup with no contact</div>
+              <div class="prob-pd">Nobody reaches out. No nudge, no guidance, no recovery.</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="fc">
-        <div class="fi"><i class="bi bi-envelope-heart-fill"></i></div>
-        <div class="ft">Hyper-personalized Messages</div>
-        <p class="fd">Claude API generates dynamic copy per segment: history, available limit, nearby merchants and personalized offers.</p>
-      </div>
-      <div class="fc">
-        <div class="fi"><i class="bi bi-broadcast-pin"></i></div>
-        <div class="ft">Automatic Omnichannel</div>
-        <p class="fd">Push, email, SMS and in-app orchestrated via CleverTap Journeys based on each user's preferred channel.</p>
-      </div>
-      <div class="fc">
-        <div class="fi"><i class="bi bi-shield-check-fill"></i></div>
-        <div class="ft">DND Frequency Control</div>
-        <p class="fd">Smart system that prevents message overload and protects the Aplazo brand experience.</p>
-      </div>
-      <div class="fc">
-        <div class="fi"><i class="bi bi-bar-chart-fill"></i></div>
-        <div class="ft">Results Dashboard</div>
-        <p class="fd">Real-time metrics: reactivation rate, CTR, conversion and GMV generated by the bot.</p>
-      </div>
-      <div class="fc">
-        <div class="fi"><i class="bi bi-arrow-repeat"></i></div>
-        <div class="ft">Continuous Learning</div>
-        <p class="fd">The model feeds back from every interaction to improve predictions week over week.</p>
+
+      <!-- The solution -->
+      <div class="sol-section">
+        <div class="sol-section-label"><i class="bi bi-robot"></i> The solution: proactive AI assistant</div>
+        <div class="sol-banner-new">
+          <div class="sol-ico"><i class="bi bi-whatsapp"></i></div>
+          <div>
+            <div class="pr-bh">Replicate the ambassador role in the digital channel</div>
+            <p class="pr-bt">Proactive, on WhatsApp — educates before asking for data and accompanies throughout the entire process. Not reactive: <strong style="color:var(--n-0)">if the user gets stuck, we follow up and guide them to complete their registration.</strong></p>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -738,85 +824,59 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- IMPACT -->
   <div id="pnl-impacto" class="pnl">
-    <div class="pr-grid">
+    <div class="imp-wrap">
 
-      <div class="pr-impacts" style="grid-column:1/-1">
-        <div class="icard">
-          <div class="iico r"><i class="bi bi-graph-down-arrow"></i></div>
-          <div class="ival">~40%</div>
-          <div class="ilbl">Approved users never activate their credit</div>
-        </div>
-        <div class="icard">
-          <div class="iico y"><i class="bi bi-currency-exchange"></i></div>
-          <div class="ival">$XX M</div>
-          <div class="ilbl">Dormant GMV potential every month</div>
-        </div>
-        <div class="icard">
-          <div class="iico c"><i class="bi bi-person-check-fill"></i></div>
-          <div class="ival">1 in 3</div>
-          <div class="ilbl">Users don't return after 30 days inactive</div>
-        </div>
-        <div class="icard">
-          <div class="iico g"><i class="bi bi-arrow-up-right-circle-fill"></i></div>
-          <div class="ival">3x</div>
-          <div class="ilbl">Higher LTV when reactivated on time</div>
-        </div>
+      <div class="imp-headline">
+        <div class="prob-label">Opportunity window</div>
+        <h2 class="prob-h2">What does <em>ActivaBot</em> unlock?</h2>
+        <p class="prob-lead">If we replicate the guidance model at scale, the incremental impact on new customers and GMV is significant — without changing the product.</p>
       </div>
 
-      <!-- roadmap as impact context -->
-      <div class="rm-grid" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:13px;">
-        <div class="rm-timeline">
-          <div class="ritem">
-            <div class="rdot done"><i class="bi bi-check-lg"></i></div>
-            <div class="rcrd">
-              <div class="rphase">Phase 0 · Hackathon 2026</div>
-              <div class="rtitle">Working Prototype</div>
-              <p class="rdesc">48h MVP: base model, BigQuery integration, first CleverTap journey and live demo.</p>
-              <span class="pill p-ok"><i class="bi bi-check-circle-fill"></i> Completed</span>
-            </div>
-          </div>
-          <div class="ritem">
-            <div class="rdot active"><i class="bi bi-lightning-charge-fill"></i></div>
-            <div class="rcrd">
-              <div class="rphase">Phase 1 · Q3 2026</div>
-              <div class="rtitle">Real Segment Pilot</div>
-              <p class="rdesc">A/B test with 10k users. Model validation and personalized messaging in production.</p>
-              <span class="pill p-live"><i class="bi bi-play-fill"></i> In progress</span>
-            </div>
-          </div>
-          <div class="ritem">
-            <div class="rdot soon"><i class="bi bi-three-dots"></i></div>
-            <div class="rcrd">
-              <div class="rphase">Phase 2 · Q4 2026</div>
-              <div class="rtitle">Full Scale Rollout</div>
-              <p class="rdesc">Deploy to full inactive user base. Production dashboard and continuous optimization.</p>
-              <span class="pill p-warn"><i class="bi bi-clock-fill"></i> Coming soon</span>
-            </div>
-          </div>
-          <div class="ritem">
-            <div class="rdot soon"><i class="bi bi-three-dots"></i></div>
-            <div class="rcrd">
-              <div class="rphase">Phase 3 · Q1 2027</div>
-              <div class="rtitle">ActivaBot 2.0</div>
-              <p class="rdesc">Expansion: credit limit upsell, RC cross-sell, retention of good payers.</p>
-              <span class="pill p-warn"><i class="bi bi-clock-fill"></i> Planned</span>
-            </div>
-          </div>
+      <div class="sol-table-wrap">
+        <table class="sol-table">
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Resolution rate</th>
+              <th>Incremental NCs/month</th>
+              <th>Incremental GMV/year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sol-tr-base">
+              <td>Base without intervention</td>
+              <td>4.53%</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Matches informational support</td>
+              <td class="sol-td-hl">17.54%</td>
+              <td class="sol-td-hl">+4,083</td>
+              <td class="sol-td-hl">$50.9M MXN</td>
+            </tr>
+            <tr>
+              <td>Matches ambassador (6.1x)</td>
+              <td class="sol-td-top">24.2%</td>
+              <td class="sol-td-top">+6,173</td>
+              <td class="sol-td-top">$76.9M MXN</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="imp-cards">
+        <div class="imp-stat">
+          <div class="imp-stat-val">+6,173</div>
+          <div class="imp-stat-lbl">New customers / month</div>
         </div>
-        <div class="rm-summary">
-          <div class="rsum-card">
-            <div class="eye">Executive summary</div>
-            <div class="rsum-head">From hackathon to product</div>
-            <div class="rsi"><div class="rnum">01</div><div class="rsi-t"><b>Prototype · Done</b>Functional demo with real integration at Hackathon 2026.</div></div>
-            <div class="rsi"><div class="rnum">02</div><div class="rsi-t"><b>Pilot · Q3 2026</b>10k users, A/B test, first production impact metrics.</div></div>
-            <div class="rsi"><div class="rnum">03</div><div class="rsi-t"><b>Scale · Q4 2026</b>100% inactive base, continuous optimization, executive dashboard.</div></div>
-            <div class="rsi"><div class="rnum">04</div><div class="rsi-t"><b>ActivaBot 2.0 · Q1 2027</b>New use cases: upsell, cross-sell, retention.</div></div>
-          </div>
-          <div class="impact-box">
-            <div class="ib-eye">Expected impact</div>
-            <div class="ib-val">+$X M GMV</div>
-            <div class="ib-desc">in the first 6 months post-pilot</div>
-          </div>
+        <div class="imp-stat">
+          <div class="imp-stat-val">$76.9M</div>
+          <div class="imp-stat-lbl">Incremental GMV / year (MXN)</div>
+        </div>
+        <div class="imp-stat">
+          <div class="imp-stat-val">6.1x</div>
+          <div class="imp-stat-lbl">Ambassador conversion multiplier</div>
         </div>
       </div>
 
