@@ -516,47 +516,393 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 .imp-stat-val { font-size: 28px; font-weight: 800; color: var(--cyan); line-height: 1; text-shadow: 0 0 20px rgba(74,201,227,.6), 0 0 40px rgba(74,201,227,.25); margin-bottom: 6px; }
 .imp-stat-lbl { font-size: 11px; color: rgba(255,255,255,.4); font-weight: 500; line-height: 1.4; }
 
-/* ─── PANEL: DEMO ────────────────────────────────── */
-.demo-wrap { display: flex; gap: 16px; height: 100%; }
-.demo-screen {
-  flex: 1; background: var(--black-3); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;
-  box-shadow: 0 0 40px rgba(74,201,227,.05);
+/* ─── SOLUTION STEPS ─────────────────────────────── */
+.sol-step-row {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,.05);
 }
-.demo-top {
-  background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.06);
-  padding: 10px 14px; display: flex; align-items: center; gap: 12px;
+.sol-step-row:last-child { border-bottom: none; padding-bottom: 0; }
+.sol-step-num {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(74,201,227,.1); border: 1px solid rgba(74,201,227,.25);
+  color: var(--cyan); font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
 }
-.demo-dots { display: flex; gap: 6px; }
-.demo-dots span { width: 11px; height: 11px; border-radius: 50%; display: block; }
-.demo-url {
-  flex: 1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 6px; padding: 3px 10px; font-size: 11px;
-  color: rgba(255,255,255,.3); font-family: monospace; text-align: center;
+.sol-step-body { flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.sol-step-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: 1px; }
+.sol-step-three { display: grid; grid-template-columns: repeat(3,1fr); gap: 11px; }
+.sol-gap-card {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 12px; padding: 14px 16px;
 }
-.demo-body {
+.sol-gap-val { font-size: 30px; font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 6px; text-shadow: 0 0 16px rgba(74,201,227,.45); }
+.sol-gap-lbl { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.4; }
+.sol-evidence-row { display: grid; grid-template-columns: 180px 1fr; gap: 14px; align-items: start; }
+.sol-big-stat {
+  background: var(--black-3); border: 1px solid rgba(74,201,227,.15);
+  border-radius: 13px; padding: 18px 16px;
+  display: flex; flex-direction: column; gap: 10px; text-align: center;
+}
+.sol-big-num { font-size: 52px; font-weight: 800; color: var(--cyan); line-height: 1; text-shadow: 0 0 24px rgba(74,201,227,.6); }
+.sol-big-desc { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.5; }
+.sol-big-compare { display: flex; align-items: center; justify-content: center; gap: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.06); }
+.sol-cmp { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sol-cmp-val { font-size: 16px; font-weight: 800; }
+.sol-cmp-lbl { font-size: 10px; color: rgba(255,255,255,.3); }
+.sol-cmp-arrow { color: rgba(255,255,255,.2); font-size: 14px; }
+
+/* ─── PANEL: INFRASTRUCTURE ──────────────────────── */
+.infra-wrap {
+  height: 100%; display: flex; flex-direction: column; gap: 16px;
+  max-width: 900px; margin: 0 auto; padding: 4px 0;
+}
+.infra-header { flex-shrink: 0; }
+.infra-diagram {
+  flex: 1; display: flex; flex-direction: column; gap: 0;
+  align-items: center; justify-content: center;
+}
+
+/* nodes */
+.infra-node {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 12px 14px; border-radius: 12px; min-width: 90px;
+  font-size: 11px; font-weight: 600; text-align: center; line-height: 1.3;
+}
+.infra-node i { font-size: 22px; }
+
+.infra-top-section {
+  position: relative; display: flex; justify-content: center;
+  align-items: flex-start; width: 100%;
+}
+.infra-center-col {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.infra-ready-float {
+  position: absolute; right: 0; top: 0;
+}
+
+.infra-bidir-arrow { display: flex; align-items: center; padding: 0 2px; }
+.infra-bidir-line {
+  width: 36px; height: 2px; position: relative;
+  background: rgba(74,201,227,.5);
+}
+.infra-bidir-line::before {
+  content: ''; position: absolute; left: -1px; top: -4px;
+  border-right: 6px solid rgba(74,201,227,.5);
+  border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+}
+.infra-bidir-line::after {
+  content: ''; position: absolute; right: -1px; top: -4px;
+  border-left: 6px solid rgba(74,201,227,.5);
+  border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+}
+
+.active-channel {
+  background: rgba(74,201,227,.12); border: 1px solid rgba(74,201,227,.35);
+  color: var(--cyan);
+}
+.mid-channel {
+  background: rgba(74,201,227,.08); border: 1px solid rgba(74,201,227,.2);
+  color: rgba(74,201,227,.7);
+}
+.infra-ready {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.4); min-width: 72px; padding: 8px 10px;
+  font-size: 10px;
+}
+.infra-ready i { font-size: 16px; }
+.infra-orchestrator {
+  background: rgba(74,201,227,.15); border: 1.5px solid rgba(74,201,227,.4);
+  color: var(--cyan); min-width: 160px; padding: 14px 20px;
+  box-shadow: 0 0 20px rgba(74,201,227,.1);
+}
+.infra-orchestrator i { font-size: 26px; }
+.infra-agent {
+  background: rgba(74,201,227,.1); border: 1px solid rgba(74,201,227,.3);
+  color: var(--cyan); min-width: 140px; padding: 12px 16px;
+}
+.infra-agent i { font-size: 20px; }
+.infra-rag {
+  background: rgba(230,115,0,.15); border: 1px solid rgba(230,115,0,.35);
+  color: #e67300; min-width: 72px; padding: 12px 14px;
+}
+.infra-rag i { font-size: 20px; }
+.infra-mcp {
+  background: rgba(160,32,240,.15); border: 1px solid rgba(160,32,240,.35);
+  color: #c060f0; min-width: 100px; padding: 12px 16px;
+}
+.infra-mcp i { font-size: 20px; }
+
+/* layout rows */
+.infra-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 32px; width: 100%; margin-bottom: 4px;
+}
+.infra-channel-group { display: flex; align-items: center; gap: 0; }
+.infra-arrows-h { display: flex; align-items: center; }
+.infra-arrow-h {
+  width: 32px; height: 2px;
+  background: linear-gradient(90deg, rgba(74,201,227,.6), rgba(74,201,227,.3));
+  position: relative;
+}
+.infra-arrow-h::after {
+  content: ''; position: absolute; right: -1px; top: -4px;
+  border-left: 6px solid rgba(74,201,227,.6); border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.infra-ready-group { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.infra-ready-label { font-size: 10px; color: rgba(255,255,255,.3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.infra-ready-row { display: flex; gap: 8px; }
+
+.infra-arrow-v-wrap { display: flex; justify-content: center; padding: 6px 0; }
+.infra-arrow-v {
+  width: 2px; height: 28px;
+  background: linear-gradient(180deg, rgba(74,201,227,.6), rgba(74,201,227,.3));
+  position: relative;
+}
+.infra-arrow-v::after {
+  content: ''; position: absolute; bottom: -1px; left: -4px;
+  border-top: 6px solid rgba(74,201,227,.6); border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.infra-proxy-box {
+  border: 1.5px dashed rgba(74,201,227,.2); border-radius: 14px;
+  padding: 14px 24px; position: relative; display: flex;
+  align-items: center; justify-content: center;
+}
+.infra-proxy-label {
+  position: absolute; top: -9px; right: 16px;
+  background: var(--black); padding: 0 8px;
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,.3);
+  text-transform: uppercase; letter-spacing: 1.5px;
+}
+
+.infra-split-arrows {
+  display: flex; width: 340px; justify-content: space-around; padding: 6px 0;
+}
+.infra-split-left, .infra-split-right { display: flex; justify-content: center; flex: 1; }
+
+.infra-agents-row {
+  display: flex; gap: 48px; align-items: center; justify-content: center; width: 100%;
+}
+.infra-agent-col { display: flex; align-items: center; }
+
+.infra-bottom-arrows {
+  display: flex; width: 340px; padding: 6px 0;
+}
+
+.infra-bottom-row {
+  display: flex; align-items: center; gap: 12px; justify-content: center;
+}
+.infra-h-arrow {
+  width: 24px; height: 2px; flex-shrink: 0;
+  background: linear-gradient(90deg, rgba(74,201,227,.5), rgba(74,201,227,.2));
+  position: relative;
+}
+.infra-h-arrow::after {
+  content: ''; position: absolute; right: -1px; top: -4px;
+  border-left: 5px solid rgba(74,201,227,.5); border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.infra-aplazo-box {
+  border: 1.5px dashed rgba(255,255,255,.12); border-radius: 12px;
+  padding: 12px 18px; display: flex; flex-direction: column; gap: 10px;
+  position: relative;
+}
+.infra-aplazo-label {
+  position: absolute; top: -9px; left: 12px;
+  background: var(--black); padding: 0 8px;
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,.35);
+  letter-spacing: .5px;
+}
+.infra-api-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.infra-api-badge {
+  background: rgba(24,168,192,.15); border: 1px solid rgba(24,168,192,.3);
+  color: var(--aqua); font-size: 12px; font-weight: 800;
+  padding: 3px 14px; border-radius: 6px; letter-spacing: 1px;
+}
+.infra-api-name { font-size: 10px; color: rgba(255,255,255,.4); text-align: center; font-weight: 500; }
+
+/* ─── INFRA DIAGRAM (id-*) ───────────────────────── */
+.id-node {
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  padding: 14px 16px; border-radius: 14px; min-width: 100px;
+  font-size: 11px; font-weight: 600; text-align: center; line-height: 1.3;
+  transition: box-shadow .2s;
+}
+.id-node i { font-size: 24px; }
+.id-whatsapp { background: rgba(74,201,227,.12); border: 1.5px solid rgba(74,201,227,.35); color: var(--cyan); }
+.id-twilio   { background: rgba(74,201,227,.08); border: 1.5px solid rgba(74,201,227,.22); color: rgba(74,201,227,.75); }
+.id-orchestrator {
+  background: rgba(74,201,227,.14); border: 1.5px solid rgba(74,201,227,.45); color: var(--cyan);
+  min-width: 160px; padding: 18px 24px;
+  box-shadow: 0 0 24px rgba(74,201,227,.1);
+}
+.id-orchestrator i { font-size: 28px; }
+.id-agent { background: rgba(74,201,227,.09); border: 1.5px solid rgba(74,201,227,.28); color: var(--cyan); min-width: 130px; }
+.id-rag   { background: rgba(230,115,0,.14); border: 1.5px solid rgba(230,115,0,.35); color: #e67300; }
+.id-mcp   { background: rgba(160,32,240,.14); border: 1.5px solid rgba(160,32,240,.35); color: #c060f0; min-width: 110px; }
+.id-ready { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.4); min-width: 76px; padding: 10px 12px; font-size: 10px; }
+.id-ready i { font-size: 18px; }
+
+/* bidirectional arrow */
+.id-bidir { display: flex; align-items: center; padding: 0 4px; }
+.id-bidir-line {
+  width: 40px; height: 2px; background: rgba(74,201,227,.55); position: relative;
+}
+.id-bidir-line::before {
+  content: ''; position: absolute; left: -1px; top: -4px;
+  border-right: 6px solid rgba(74,201,227,.55); border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+}
+.id-bidir-line::after {
+  content: ''; position: absolute; right: -1px; top: -4px;
+  border-left: 6px solid rgba(74,201,227,.55); border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+}
+
+/* vertical arrow (down) */
+.id-arrow-v {
+  width: 2px; height: 32px; background: rgba(74,201,227,.5); position: relative; margin: 0 auto;
+}
+.id-arrow-v::after {
+  content: ''; position: absolute; bottom: -1px; left: -4px;
+  border-top: 6px solid rgba(74,201,227,.5); border-left: 5px solid transparent; border-right: 5px solid transparent;
+}
+
+/* horizontal arrow (right) */
+.id-arrow-h {
+  width: 28px; height: 2px; background: rgba(74,201,227,.5); position: relative; flex-shrink: 0;
+}
+.id-arrow-h::after {
+  content: ''; position: absolute; right: -1px; top: -4px;
+  border-left: 6px solid rgba(74,201,227,.5); border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+}
+
+/* proxy dashed box */
+.id-proxy-box {
+  border: 1.5px dashed rgba(74,201,227,.2); border-radius: 16px;
+  padding: 16px 28px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.id-proxy-label {
+  position: absolute; top: -9px; right: 18px;
+  background: var(--black); padding: 0 8px;
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,.3);
+  text-transform: uppercase; letter-spacing: 1.8px;
+}
+
+/* aplazo infra dashed box */
+.id-aplazo-box {
+  border: 1.5px dashed rgba(255,255,255,.14); border-radius: 14px;
+  padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;
+  position: relative;
+}
+.id-aplazo-label {
+  position: absolute; top: -9px; left: 14px;
+  background: var(--black); padding: 0 8px;
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,.35); letter-spacing: .3px;
+}
+.id-api-badge {
+  background: rgba(24,168,192,.14); border: 1px solid rgba(24,168,192,.3);
+  color: var(--aqua); font-size: 13px; font-weight: 800;
+  padding: 4px 16px; border-radius: 7px; letter-spacing: 1px;
+}
+
+/* ─── PANEL: DEMO v2 ─────────────────────────────── */
+.demo-v2-wrap {
+  height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 18px;
+  position: relative; overflow: hidden;
+}
+.demo-v2-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,201,227,.07) 0%, transparent 65%);
+  animation: tyglowpulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.demo-v2-browser {
+  width: 100%; max-width: 680px;
+  background: var(--black-3); border: 1px solid rgba(74,201,227,.2);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(74,201,227,.08), 0 24px 64px rgba(0,0,0,.6), 0 0 80px rgba(74,201,227,.06);
+  position: relative; z-index: 1;
+  flex: 1; display: flex; flex-direction: column; max-height: 420px;
+}
+.demo-v2-bar {
+  background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.07);
+  padding: 11px 16px; display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.demo-v2-url {
+  display: flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 7px; padding: 4px 14px;
+  font-size: 12px; color: rgba(255,255,255,.4);
+  font-family: monospace;
+}
+.demo-v2-body {
   flex: 1; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; min-height: 0;
 }
-.demo-placeholder {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 12px; text-align: center; padding: 32px;
+
+/* Animated concentric rings */
+.demo-v2-rings { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.demo-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(74,201,227,.15);
+  animation: ringpulse 3s ease-out infinite;
 }
-.demo-placeholder i {
-  font-size: 56px; color: var(--cyan);
-  text-shadow: 0 0 30px rgba(74,201,227,.6), 0 0 60px rgba(74,201,227,.3);
+.demo-ring-1 { width: 160px; height: 160px; animation-delay: 0s; }
+.demo-ring-2 { width: 260px; height: 260px; animation-delay: .8s; }
+.demo-ring-3 { width: 360px; height: 360px; animation-delay: 1.6s; }
+@keyframes ringpulse {
+  0%   { opacity: .6; transform: scale(.85); }
+  60%  { opacity: .15; }
+  100% { opacity: 0;  transform: scale(1.1); }
+}
+
+.demo-v2-center {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  position: relative; z-index: 2; text-align: center;
+}
+.demo-v2-icon-wrap {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--cyan);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; color: var(--black);
+  box-shadow: 0 0 28px rgba(74,201,227,.7), 0 0 60px rgba(74,201,227,.3);
   animation: logopulse 3s ease-in-out infinite;
+  cursor: pointer; transition: transform .15s;
 }
-.demo-big { font-size: 48px; font-weight: 800; color: var(--n-0); letter-spacing: -1.5px; line-height: 1; text-align: center; }
-.demo-small { font-size: 13px; color: rgba(255,255,255,.3); }
-.demo-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 7px; margin-top: 8px;
-  background: var(--cyan); color: var(--black); font-family: inherit;
-  font-size: 13px; font-weight: 700; padding: 9px 22px; border-radius: 100px;
-  border: none; cursor: pointer; text-align: center;
-  box-shadow: 0 0 20px rgba(74,201,227,.4);
-  transition: box-shadow .2s, transform .15s;
+.demo-v2-icon-wrap:hover { transform: scale(1.08); }
+.demo-v2-title {
+  font-size: 42px; font-weight: 800; color: var(--n-0);
+  letter-spacing: -1.2px; line-height: 1;
 }
-.demo-btn:hover { box-shadow: 0 0 32px rgba(74,201,227,.7); transform: translateY(-1px); }
+.demo-v2-sub {
+  font-size: 13px; color: rgba(255,255,255,.3);
+  font-family: monospace; letter-spacing: .5px;
+}
+
+.demo-v2-footer {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(255,255,255,.25);
+  position: relative; z-index: 1;
+}
+.demo-v2-dot-live {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #28c840;
+  box-shadow: 0 0 8px rgba(40,200,64,.7);
+  animation: livepulse 1.5s ease-in-out infinite;
+}
+@keyframes livepulse {
+  0%,100% { opacity:1; box-shadow: 0 0 8px rgba(40,200,64,.7); }
+  50%      { opacity:.5; box-shadow: 0 0 14px rgba(40,200,64,.4); }
+}
 
 /* ─── PANEL: THANK YOU ───────────────────────────── */
 .ty-wrap {
@@ -635,6 +981,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
     <button class="tb"     onclick="go('solucion',this)"><i class="bi bi-lightning-charge-fill"></i> Solution</button>
     <button class="tb"     onclick="go('impacto',this)"><i class="bi bi-graph-up-arrow"></i> Impact</button>
     <button class="tb"     onclick="go('demo',this)"><i class="bi bi-play-btn-fill"></i> Demo</button>
+    <button class="tb"     onclick="go('infra',this)"><i class="bi bi-diagram-3-fill"></i> Infrastructure</button>
     <button class="tb"     onclick="go('thanks',this)"><i class="bi bi-heart-fill"></i> Thank You</button>
   </div>
 </div>
@@ -851,73 +1198,106 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
   <div id="pnl-solucion" class="pnl">
     <div class="sol-scroll">
 
-      <!-- THE SOLUTION FIRST -->
-      <div class="sol-section">
-        <div class="sol-section-label"><i class="bi bi-robot"></i> The solution: proactive AI assistant</div>
-        <div class="sol-banner-new">
-          <div class="sol-ico"><i class="bi bi-whatsapp"></i></div>
-          <div>
-            <div class="pr-bh">Replicate the ambassador role in the digital channel</div>
-            <p class="pr-bt">Proactive, on WhatsApp — educates before asking for data and accompanies throughout the entire process. Not reactive: <strong style="color:var(--n-0)">if the user gets stuck, we follow up and guide them to complete their registration.</strong></p>
-          </div>
-        </div>
-        <!-- THE MECHANISM QUOTE -->
-        <div class="mechanism-quote">
-          <i class="bi bi-quote"></i>
-          The mechanism is the same: someone who explains, builds trust and accompanies at the right moment.
-        </div>
-      </div>
-
-      <!-- WHY IT WORKS: proof + chart side by side -->
-      <div class="sol-section">
-        <div class="sol-section-label"><i class="bi bi-check-circle-fill"></i> Why it works — the evidence</div>
-        <div class="sol-proof-row">
-          <div class="sol-proof-cards-col">
-            <div class="sol-proof-card">
-              <div class="sol-proof-val">9x</div>
-              <div class="sol-proof-title">Registration completion</div>
-              <div class="sol-proof-desc">With guidance: <strong>36.26%</strong> vs <strong>3.97%</strong> organic.</div>
+      <!-- STEP 1: THE GAP -->
+      <div class="sol-step-row">
+        <div class="sol-step-num">01</div>
+        <div class="sol-step-body">
+          <div class="sol-step-title">The gap we're solving</div>
+          <div class="sol-step-three">
+            <div class="sol-gap-card">
+              <div class="sol-gap-val" style="color:#ff6b6b">~124K</div>
+              <div class="sol-gap-lbl">users get stuck in signup every month</div>
             </div>
-          </div>
-          <!-- Impact bar chart -->
-          <div class="chart-card" style="flex:1">
-            <div class="chart-title">Registration completion rate — with vs without guidance</div>
-            <div class="bar-chart" style="gap:14px;">
-              <div class="bar-row">
-                <div class="bar-label">Organic (no guidance)</div>
-                <div class="bar-track" style="height:32px;">
-                  <div class="bar-fill" style="width:3.97%;height:100%;background:rgba(255,255,255,.15);display:flex;align-items:center;">
-                    <span class="bar-pct" style="white-space:nowrap;margin-left:4px;">3.97%</span>
-                  </div>
-                </div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-label">With informational support</div>
-                <div class="bar-track" style="height:32px;">
-                  <div class="bar-fill" style="width:100%;height:100%;display:flex;align-items:center;">
-                    <span class="bar-pct">17.54%</span>
-                  </div>
-                </div>
-              </div>
+            <div class="sol-gap-card">
+              <div class="sol-gap-val">10%</div>
+              <div class="sol-gap-lbl">only 1 in 10 asks for help</div>
             </div>
-            <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.25);text-align:right;">Scale: 0% → 17.54%</div>
+            <div class="sol-gap-card">
+              <div class="sol-gap-val" style="color:#ff6b6b">0</div>
+              <div class="sol-gap-lbl">proactive digital follow-ups today</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Scale problem -->
-      <div class="sol-section">
-        <div class="sol-section-label"><i class="bi bi-exclamation-triangle-fill"></i> The scale problem today</div>
-        <div class="prob-points" style="display:grid;grid-template-columns:repeat(2,1fr);gap:11px;">
-          <div class="sol-proof-card" style="gap:6px">
-            <div style="font-size:28px;font-weight:800;color:var(--cyan);text-shadow:0 0 16px rgba(74,201,227,.5)">10%</div>
-            <div style="font-size:12px;font-weight:700;color:var(--n-0)">Contact support</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.35)">The vast majority struggle alone.</div>
+      <!-- STEP 2: THE SOLUTION -->
+      <div class="sol-step-row">
+        <div class="sol-step-num">02</div>
+        <div class="sol-step-body">
+          <div class="sol-step-title">What ActivaBot does</div>
+          <div class="sol-banner-new">
+            <div class="sol-ico"><i class="bi bi-whatsapp"></i></div>
+            <div>
+              <div class="pr-bh">A proactive AI assistant on WhatsApp</div>
+              <p class="pr-bt">Educates before asking for data and accompanies throughout the entire registration. Not reactive — <strong style="color:var(--n-0)">if the user gets stuck, we follow up and guide them to complete their registration.</strong></p>
+            </div>
           </div>
-          <div class="sol-proof-card" style="gap:6px">
-            <div style="font-size:28px;font-weight:800;color:var(--cyan);text-shadow:0 0 16px rgba(74,201,227,.5)">~124K</div>
-            <div style="font-size:12px;font-weight:700;color:var(--n-0)">Users stuck/month</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.35)">No nudge. No guidance. No recovery.</div>
+        </div>
+      </div>
+
+      <!-- STEP 3: WHY IT WORKS -->
+      <div class="sol-step-row">
+        <div class="sol-step-num">03</div>
+        <div class="sol-step-body">
+          <div class="sol-step-title">Why it works — guidance multiplies completion</div>
+          <div class="sol-evidence-row">
+            <!-- Big stat -->
+            <div class="sol-big-stat">
+              <div class="sol-big-num">9x</div>
+              <div class="sol-big-desc">Users with informational guidance complete their registration at <span style="color:var(--cyan);font-weight:700">36.26%</span> vs <span style="color:rgba(255,255,255,.5);font-weight:700">3.97%</span> organic — 9x more</div>
+            </div>
+            <!-- Chart.js bar -->
+            <div class="chart-card" style="flex:1">
+              <div class="chart-title">Registration completion rate — Today vs with ActivaBot</div>
+              <div style="position:relative;width:100%;height:120px;">
+                <canvas id="solChart" role="img" aria-label="Bar chart: today 3.97%, with support 17.54%, with ActivaBot 36.26%">Today: 3.97%. With support: 17.54%. With ActivaBot: 36.26%.</canvas>
+              </div>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+              <script>
+              (function(){
+                var ctx = document.getElementById('solChart');
+                if(!ctx) return;
+                new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: ['Today', 'With support', 'With ActivaBot'],
+                    datasets: [{
+                      data: [3.97, 17.54, 36.26],
+                      backgroundColor: ['rgba(255,255,255,.15)', 'rgba(74,201,227,.45)', '#4AC9E3'],
+                      borderRadius: 6,
+                      barPercentage: 0.55,
+                    }]
+                  },
+                  options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: { display: false },
+                      tooltip: {
+                        callbacks: { label: function(c){ return ' ' + c.parsed.y.toFixed(2) + '%'; } }
+                      }
+                    },
+                    scales: {
+                      x: {
+                        grid: { display: false },
+                        ticks: { color: 'rgba(255,255,255,.5)', font: { size: 11 } },
+                        border: { color: 'rgba(255,255,255,.08)' }
+                      },
+                      y: {
+                        grid: { color: 'rgba(255,255,255,.05)' },
+                        ticks: { color: 'rgba(255,255,255,.35)', font: { size: 10 }, callback: function(v){ return v + '%'; } },
+                        border: { color: 'rgba(255,255,255,.08)' }
+                      }
+                    }
+                  }
+                });
+              })();
+              </script>
+              <div class="mechanism-quote" style="margin-top:10px;">
+                <i class="bi bi-quote"></i>
+                The mechanism is the same: someone who explains, builds trust and accompanies at the right moment.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -996,23 +1376,163 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- DEMO -->
   <div id="pnl-demo" class="pnl">
-    <div class="demo-wrap">
-      <div class="demo-screen">
-        <div class="demo-top">
+    <div class="demo-v2-wrap">
+
+      <!-- Pulsing glow bg -->
+      <div class="demo-v2-glow"></div>
+
+      <!-- Browser frame -->
+      <div class="demo-v2-browser">
+        <div class="demo-v2-bar">
           <div class="demo-dots">
             <span style="background:#ff5f57"></span>
             <span style="background:#febc2e"></span>
             <span style="background:#28c840"></span>
           </div>
-          <div class="demo-url">activabot.aplazo.mx · live demo</div>
+          <div class="demo-v2-url">
+            <i class="bi bi-lock-fill" style="font-size:9px;color:rgba(74,201,227,.6)"></i>
+            activabot.aplazo.mx
+          </div>
+          <div style="width:52px"></div>
         </div>
-        <div class="demo-body">
-          <div class="demo-placeholder">
-            <i class="bi bi-play-circle-fill"></i>
-            <p class="demo-big">Live Demo</p>
+
+        <div class="demo-v2-body">
+          <!-- Animated rings -->
+          <div class="demo-v2-rings">
+            <div class="demo-ring demo-ring-1"></div>
+            <div class="demo-ring demo-ring-2"></div>
+            <div class="demo-ring demo-ring-3"></div>
+          </div>
+          <!-- Center icon -->
+          <div class="demo-v2-center">
+            <div class="demo-v2-icon-wrap">
+              <i class="bi bi-play-fill"></i>
+            </div>
+            <div class="demo-v2-title">Live Demo</div>
+            <div class="demo-v2-sub">activabot.aplazo.mx</div>
           </div>
         </div>
       </div>
+
+      <!-- Bottom label -->
+      <div class="demo-v2-footer">
+        <span class="demo-v2-dot-live"></span>
+        Presentation mode · ActivaBot Hackathon 2026
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INFRASTRUCTURE -->
+  <div id="pnl-infra" class="pnl">
+    <div style="height:100%;display:flex;flex-direction:column;gap:10px;max-width:960px;margin:0 auto;">
+      <div style="flex-shrink:0;">
+        <div class="prob-label">Technical Architecture</div>
+        <h2 class="prob-h2" style="font-size:22px">ActivaBot <em>Infrastructure</em></h2>
+      </div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0;">
+        <svg viewBox="0 0 880 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;max-height:520px;">
+          <defs>
+            <marker id="iarr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(74,201,227,0.8)"/>
+            </marker>
+            <marker id="iarr2" markerWidth="9" markerHeight="9" refX="1" refY="3" orient="auto">
+              <path d="M8,0 L8,6 L0,3 z" fill="rgba(74,201,227,0.8)"/>
+            </marker>
+          </defs>
+
+          <!-- ════ READY FOR (top right) ════ -->
+          <text x="620" y="38" fill="rgba(255,255,255,0.3)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" letter-spacing="2">READY FOR</text>
+          <!-- Telegram -->
+          <rect x="610" y="48" width="58" height="58" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <image href="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" x="623" y="58" width="32" height="32"/>
+          <text x="639" y="98" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Telegram</text>
+          <!-- Messenger -->
+          <rect x="678" y="48" width="58" height="58" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <image href="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" x="691" y="58" width="32" height="32"/>
+          <text x="707" y="98" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Messenger</text>
+          <!-- Web -->
+          <rect x="746" y="48" width="58" height="58" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="775" y="80" text-anchor="middle" font-size="22" fill="rgba(255,255,255,0.45)">🌐</text>
+          <text x="775" y="98" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Web</text>
+
+          <!-- ════ WHATSAPP (cx=230) ════ -->
+          <rect x="154" y="30" width="116" height="96" rx="16" fill="rgba(37,211,102,0.12)" stroke="rgba(37,211,102,0.35)" stroke-width="1.5"/>
+          <image href="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" x="180" y="42" width="64" height="64"/>
+          <text x="212" y="116" text-anchor="middle" fill="rgba(37,211,102,0.9)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">WhatsApp</text>
+
+          <!-- ════ TWILIO (cx=380) ════ -->
+          <rect x="322" y="30" width="116" height="96" rx="16" fill="rgba(74,201,227,0.08)" stroke="rgba(74,201,227,0.25)" stroke-width="1.5"/>
+          <text x="380" y="76" text-anchor="middle" font-size="28" fill="rgba(74,201,227,0.75)">◎</text>
+          <text x="380" y="104" text-anchor="middle" fill="rgba(74,201,227,0.6)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Twilio</text>
+
+          <!-- WhatsApp <-> Twilio -->
+          <line x1="272" y1="78" x2="320" y2="78" stroke="rgba(74,201,227,0.7)" stroke-width="2" marker-end="url(#iarr)" marker-start="url(#iarr2)"/>
+
+          <!-- Twilio → orchestrator (straight down) -->
+          <line x1="380" y1="128" x2="380" y2="190" stroke="rgba(74,201,227,0.7)" stroke-width="2" marker-end="url(#iarr)"/>
+
+          <!-- ════ PROXY dashed box ════ -->
+          <rect x="218" y="188" width="324" height="140" rx="14" fill="rgba(74,201,227,0.02)" stroke="rgba(74,201,227,0.2)" stroke-width="1.5" stroke-dasharray="7,4"/>
+          <text x="522" y="210" text-anchor="end" fill="rgba(255,255,255,0.28)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" letter-spacing="2">PROXY</text>
+
+          <!-- ════ agent-orchestrator (cx=380) ════ -->
+          <rect x="300" y="204" width="160" height="104" rx="14" fill="rgba(74,201,227,0.14)" stroke="rgba(74,201,227,0.45)" stroke-width="1.5"/>
+          <text x="380" y="250" text-anchor="middle" font-size="28" fill="#4AC9E3">✦</text>
+          <text x="380" y="276" text-anchor="middle" fill="rgba(74,201,227,0.9)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">agent-orchestrator</text>
+
+          <!-- orchestrator → onboarding (left, straight down cx=280) -->
+          <line x1="320" y1="308" x2="280" y2="364" stroke="rgba(74,201,227,0.65)" stroke-width="2" marker-end="url(#iarr)"/>
+
+          <!-- orchestrator → support (right, straight down cx=490) -->
+          <line x1="440" y1="308" x2="490" y2="364" stroke="rgba(74,201,227,0.65)" stroke-width="2" marker-end="url(#iarr)"/>
+
+          <!-- ════ onboarding-agent (cx=252) ════ -->
+          <rect x="172" y="364" width="160" height="100" rx="14" fill="rgba(74,201,227,0.1)" stroke="rgba(74,201,227,0.3)" stroke-width="1.5"/>
+          <text x="252" y="410" text-anchor="middle" font-size="24" fill="#4AC9E3">✦</text>
+          <text x="252" y="434" text-anchor="middle" fill="rgba(74,201,227,0.85)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">onboarding-agent</text>
+
+          <!-- ════ support-agent (cx=490) ════ -->
+          <rect x="420" y="364" width="140" height="100" rx="14" fill="rgba(74,201,227,0.1)" stroke="rgba(74,201,227,0.3)" stroke-width="1.5"/>
+          <text x="490" y="410" text-anchor="middle" font-size="24" fill="#4AC9E3">✦</text>
+          <text x="490" y="434" text-anchor="middle" fill="rgba(74,201,227,0.85)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">support-agent</text>
+
+          <!-- support-agent → RAG -->
+          <line x1="562" y1="414" x2="604" y2="414" stroke="rgba(74,201,227,0.65)" stroke-width="2" marker-end="url(#iarr)"/>
+
+          <!-- ════ RAG ════ -->
+          <rect x="604" y="376" width="90" height="76" rx="14" fill="rgba(230,115,0,0.15)" stroke="rgba(230,115,0,0.4)" stroke-width="1.5"/>
+          <text x="649" y="414" text-anchor="middle" font-size="26" fill="#e67300">📦</text>
+          <text x="649" y="436" text-anchor="middle" fill="rgba(230,115,0,0.9)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">RAG</text>
+
+          <!-- onboarding → Signup MCP (straight down cx=252) -->
+          <line x1="252" y1="466" x2="252" y2="500" stroke="rgba(74,201,227,0.65)" stroke-width="2" marker-end="url(#iarr)"/>
+
+          <!-- ════ Signup MCP (cx=222) ════ -->
+          <rect x="172" y="500" width="130" height="90" rx="14" fill="rgba(130,20,200,0.2)" stroke="rgba(160,32,240,0.45)" stroke-width="1.5"/>
+          <text x="237" y="546" text-anchor="middle" font-size="28" fill="#c060f0">☁</text>
+          <text x="237" y="572" text-anchor="middle" fill="rgba(200,96,240,0.9)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Signup MCP</text>
+
+          <!-- Signup MCP → Aplazo Infra -->
+          <line x1="304" y1="545" x2="346" y2="545" stroke="rgba(74,201,227,0.6)" stroke-width="2" marker-end="url(#iarr)"/>
+
+          <!-- ════ Aplazo Infrastructure dashed box ════ -->
+          <rect x="346" y="500" width="264" height="90" rx="14" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <text x="478" y="522" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Aplazo Infrastructure</text>
+          <!-- API id-verification -->
+          <rect x="362" y="530" width="96" height="46" rx="9" fill="rgba(24,168,192,0.12)" stroke="rgba(24,168,192,0.3)" stroke-width="1"/>
+          <text x="410" y="551" text-anchor="middle" fill="#18A8C0" font-size="14" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" letter-spacing="1">API</text>
+          <text x="410" y="567" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9.5" font-family="Plus Jakarta Sans,sans-serif">id-verification</text>
+          <!-- API customer registration -->
+          <rect x="474" y="530" width="118" height="46" rx="9" fill="rgba(24,168,192,0.12)" stroke="rgba(24,168,192,0.3)" stroke-width="1"/>
+          <text x="533" y="551" text-anchor="middle" fill="#18A8C0" font-size="14" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" letter-spacing="1">API</text>
+          <text x="533" y="563" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9.5" font-family="Plus Jakarta Sans,sans-serif">customer</text>
+          <text x="533" y="574" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9.5" font-family="Plus Jakarta Sans,sans-serif">registration</text>
+
+        </svg>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 
