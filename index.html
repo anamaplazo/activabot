@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ActivaBot — Aplazo Hackathon 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+/* ─── APLAZO DESIGN TOKENS v3.1 ─────────────────── */
+:root {
+  /* Brand */
+  --cyan:        #4AC9E3;
+  --teal:        #214345;
+  --foam:        #D6F5FA;
+  --cyan-light:  #9EE4F0;
+  --aqua:        #18A8C0;
+  --sea:         #0C617A;
+  --teal-light:  #3A6E72;
+  --midnight:    #0A2B2D;
+  /* Neutrals */
+  --n-0:   #FFFFFF;
+  --n-50:  #F8F9FA;
+  --n-100: #EBEDF0;
+  --n-200: #D8DCE0;
+  --n-300: #C4CAD0;
+  --n-400: #8FA0AC;
+  --n-500: #5A6E7A;
+  --n-700: #4A555E;
+  --n-800: #2E343A;
+  --n-900: #1A2024;
+  --n-950: #060606;
+  /* Semantic */
+  --green:  #5AAD12; --green-l:  #EAF7D5; --green-d:  #357A09;
+  --red:    #D41413; --red-l:    #FDEAEA; --red-d:    #8A0D0C;
+  --yellow: #B07800; --yellow-l: #FFF3CC; --yellow-d: #7A5200;
+  --orange: #E07000; --orange-l: #FFF0D9;
+  --purple: #8B3FA8; --purple-l: #F5E8FA;
+  /* Surfaces */
+  --bg:      #F2F4F6;
+  --surface: #EBEDF0;
+  --card:    #FFFFFF;
+  --border:  #E2E5E8;
+  --t1: #060606;
+  --t2: #2E343A;
+  --t3: #7F8D98;
+  /* Shadows */
+  --s1: 0 1px 4px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
+  --s2: 0 4px 16px rgba(0,0,0,.09), 0 2px 6px rgba(0,0,0,.05);
+  --s3: 0 12px 40px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.06);
+  --s4: 0 24px 64px rgba(0,0,0,.15), 0 8px 24px rgba(0,0,0,.07);
+  /* Layout */
+  --nav-h: 62px;
+  --tab-h: 50px;
+  --foot-h: 44px;
+  /* Tech-black palette */
+  --black:   #050608;
+  --black-2: #0A0C10;
+  --black-3: #0F1318;
+  --glow:    rgba(74,201,227,.18);
+}
+
+/* ─── RESET ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--t1); -webkit-font-smoothing: antialiased; }
+
+/* ─── LAYOUT SHELL ───────────────────────────────── */
+.app { display: flex; flex-direction: column; height: 100vh; }
+
+/* ─── NAV ────────────────────────────────────────── */
+.nav {
+  height: var(--nav-h); flex-shrink: 0;
+  background: var(--black-2);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(74,201,227,.08);
+  box-shadow: 0 1px 0 rgba(74,201,227,.05), 0 8px 32px rgba(0,0,0,.8);
+  position: relative;
+}
+.nav::after {
+  content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(74,201,227,.0) 10%, rgba(74,201,227,.9) 40%, rgba(74,201,227,1) 50%, rgba(74,201,227,.9) 60%, rgba(74,201,227,.0) 90%, transparent 100%);
+  animation: scanline 4s ease-in-out infinite;
+}
+@keyframes scanline {
+  0%,100% { opacity:.4; transform:scaleX(.6); }
+  50% { opacity:1; transform:scaleX(1); }
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: var(--cyan);
+  box-shadow: 0 0 16px rgba(74,201,227,.6), 0 0 40px rgba(74,201,227,.25), inset 0 1px 0 rgba(255,255,255,.3);
+  display: flex; align-items: center;
+  justify-content: center; font-size: 18px; color: var(--black);
+  animation: logopulse 3s ease-in-out infinite;
+}
+@keyframes logopulse {
+  0%,100% { box-shadow: 0 0 16px rgba(74,201,227,.6), 0 0 40px rgba(74,201,227,.25); }
+  50% { box-shadow: 0 0 24px rgba(74,201,227,.9), 0 0 60px rgba(74,201,227,.4); }
+}
+.nav-sep { width: 1px; height: 24px; background: rgba(255,255,255,.08); }
+.nav-name { display: flex; flex-direction: column; gap: 1px; }
+.nav-name-top { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.3); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-name-bot { font-size: 20px; font-weight: 800; color: var(--n-0); letter-spacing: -.6px; line-height: 1; }
+.nav-name-bot em { color: var(--cyan); font-style: normal; text-shadow: 0 0 20px rgba(74,201,227,.8), 0 0 40px rgba(74,201,227,.4); }
+.nav-pill {
+  background: rgba(74,201,227,.07); border: 1px solid rgba(74,201,227,.3);
+  color: var(--cyan); font-size: 11px; font-weight: 700; padding: 5px 14px;
+  border-radius: 100px; letter-spacing: .5px; display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 0 16px rgba(74,201,227,.15), inset 0 1px 0 rgba(74,201,227,.1);
+  animation: pillglow 2.5s ease-in-out infinite;
+}
+@keyframes pillglow {
+  0%,100% { box-shadow: 0 0 10px rgba(74,201,227,.1); }
+  50% { box-shadow: 0 0 20px rgba(74,201,227,.3); }
+}
+
+/* ─── TABS BAR ───────────────────────────────────── */
+.tabbar {
+  height: var(--tab-h); flex-shrink: 0;
+  background: var(--black-2); border-bottom: 1px solid rgba(255,255,255,.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+}
+.tabbar-inner {
+  height: 100%; max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; padding: 0 20px;
+  overflow-x: auto; scrollbar-width: none; gap: 2px;
+}
+.tabbar-inner::-webkit-scrollbar { display: none; }
+.tb {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 0 18px; height: 100%;
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.25); background: none; border: none;
+  border-bottom: 2px solid transparent; cursor: pointer;
+  white-space: nowrap; transition: color .15s, border-color .15s, text-shadow .15s;
+  margin-bottom: -1px; letter-spacing: .2px;
+}
+.tb i { font-size: 14px; }
+.tb:hover { color: rgba(255,255,255,.6); }
+.tb.on {
+  color: var(--cyan);
+  border-bottom-color: var(--cyan);
+  text-shadow: 0 0 16px rgba(74,201,227,.7);
+}
+.tb-chip {
+  background: var(--cyan); color: var(--black);
+  font-size: 9px; font-weight: 800; padding: 2px 6px;
+  border-radius: 100px; letter-spacing: .3px;
+  box-shadow: 0 0 8px rgba(74,201,227,.5);
+}
+
+/* ─── PANELS ─────────────────────────────────────── */
+.panels {
+  flex: 1; min-height: 0; overflow: hidden; position: relative;
+  background: var(--black);
+}
+.pnl {
+  display: none; height: 100%; overflow-y: auto;
+  padding: 18px 24px 20px; max-width: 1280px; margin: 0 auto;
+  scrollbar-width: thin; scrollbar-color: rgba(74,201,227,.2) transparent;
+}
+.pnl::-webkit-scrollbar { width: 4px; }
+.pnl::-webkit-scrollbar-thumb { background: rgba(74,201,227,.2); border-radius: 4px; }
+.pnl.on { display: block; animation: up .2s ease; }
+@keyframes up { from { opacity:0; transform:translateY(10px) } to { opacity:1; transform:translateY(0) } }
+
+/* subtle ambient glow behind the whole panels area */
+.panels::before {
+  content: ''; position: absolute; top: 30%; left: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,201,227,.03) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ─── FOOTER ─────────────────────────────────────── */
+.foot {
+  height: var(--foot-h); flex-shrink: 0;
+  background: var(--black-2); border-top: 1px solid rgba(74,201,227,.08);
+  display: flex; align-items: center; justify-content: center; padding: 0 28px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.4);
+}
+.foot-r { font-size: 12px; color: rgba(255,255,255,.3); letter-spacing: .5px; }
+
+/* ─── ATOMS ──────────────────────────────────────── */
+.eye { font-size: 10px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 1.7px; margin-bottom: 5px; opacity: .8; }
+.htitle { font-size: 19px; font-weight: 800; color: var(--n-0); letter-spacing: -.35px; line-height: 1.2; margin-bottom: 5px; }
+.hdesc { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.55; max-width: 560px; }
+.div { height: 1px; background: rgba(255,255,255,.07); margin: 14px 0; }
+
+.pill { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+.p-ok  { background: rgba(90,173,18,.15);  color: #90ee60; border: 1px solid rgba(90,173,18,.25); }
+.p-warn{ background: rgba(176,120,0,.15); color: #ffd166; border: 1px solid rgba(176,120,0,.25); }
+.p-info{ background: rgba(74,201,227,.1);  color: var(--cyan); border: 1px solid rgba(74,201,227,.2); }
+.p-live{ background: var(--cyan); color: var(--black); }
+.p-red { background: rgba(212,20,19,.15);  color: #ff6b6b; border: 1px solid rgba(212,20,19,.25); }
+
+/* ─── PANEL: EQUIPO ──────────────────────────────── */
+.eq-wrap { display: flex; gap: 16px; height: 100%; }
+
+.eq-foto-col {
+  flex: 0 0 280px; border-radius: 18px;
+  background: var(--black-3);
+  border: 1px solid rgba(74,201,227,.15);
+  box-shadow: 0 0 30px rgba(74,201,227,.06);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 22px 20px; text-align: center;
+  position: relative; overflow: hidden; gap: 14px;
+}
+.eq-foto-col::before {
+  content: ''; position: absolute; top: -50px; right: -50px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,201,227,.1) 0%, transparent 65%);
+}
+.eq-foto-box {
+  width: 100%; flex: 1; max-height: 190px;
+  background: rgba(74,201,227,.04); border: 2px dashed rgba(74,201,227,.25);
+  border-radius: 12px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  color: rgba(255,255,255,.3);
+}
+.eq-foto-box i { font-size: 28px; color: var(--cyan); opacity: .5; }
+.eq-foto-box p { font-size: 11px; line-height: 1.4; }
+.eq-team-name { font-size: 16px; font-weight: 800; color: var(--n-0); position: relative; z-index: 1; }
+.eq-team-sub  { font-size: 11px; color: rgba(255,255,255,.35); position: relative; z-index: 1; }
+.eq-chips { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; position: relative; z-index: 1; }
+.eq-mini-stats { display: flex; gap: 16px; position: relative; z-index: 1; }
+.eqms-v { font-size: 22px; font-weight: 800; color: var(--cyan); text-shadow: 0 0 18px rgba(74,201,227,.6), 0 0 36px rgba(74,201,227,.3); }
+.eqms-l { font-size: 10px; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .6px; font-weight: 600; }
+
+.eq-members { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.mrow {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.06); border-radius: 12px;
+  padding: 12px 16px; display: flex; align-items: center; gap: 14px;
+  box-shadow: var(--s1); flex: 1;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  position: relative; overflow: hidden;
+}
+.mrow::after {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, transparent, var(--cyan), transparent);
+  opacity: 0; transition: opacity .2s;
+  border-radius: 3px 0 0 3px;
+}
+.mrow:hover { border-color: rgba(74,201,227,.4); transform: translateX(4px); box-shadow: 0 0 20px rgba(74,201,227,.08), -4px 0 20px rgba(74,201,227,.05); }
+.mrow:hover::after { opacity: 1; }
+.av {
+  width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 800; color: var(--cyan);
+  box-shadow: 0 0 0 2px var(--cyan), 0 0 0 4px var(--black-3), 0 0 10px rgba(74,201,227,.25);
+}
+.av-img {
+  width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--cyan), 0 0 0 4px var(--black-3), 0 0 10px rgba(74,201,227,.25);
+}
+.mn { font-size: 14px; font-weight: 700; color: var(--n-0); }
+.mr { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 1px; }
+.mt { display: inline-block; background: rgba(74,201,227,.1); color: var(--cyan); font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 100px; text-transform: uppercase; letter-spacing: .4px; border: 1px solid rgba(74,201,227,.2); }
+
+/* ─── PANEL: PROBLEMA ────────────────────────────── */
+.pr-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; gap: 13px; height: 100%; }
+
+.pr-banner {
+  grid-column: 1/-1;
+  background: rgba(212,20,19,.08);
+  border: 1px solid rgba(212,20,19,.2); border-radius: 14px;
+  padding: 18px 22px; display: flex; gap: 18px; align-items: flex-start;
+}
+.pr-ico {
+  width: 50px; height: 50px; background: rgba(212,20,19,.15); border-radius: 12px;
+  border: 1px solid rgba(212,20,19,.25); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 22px; color: #ff6b6b;
+}
+.pr-bh { font-size: 15px; font-weight: 800; color: var(--n-0); margin-bottom: 6px; }
+.pr-bt { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.6; }
+
+.pr-impacts { grid-column: 1/-1; display: grid; grid-template-columns: repeat(4,1fr); gap: 11px; }
+.icard {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.07); border-radius: 13px;
+  padding: 14px 16px; box-shadow: var(--s1);
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  position: relative; overflow: hidden;
+}
+.icard::before {
+  content: ''; position: absolute; inset: 0; border-radius: 13px;
+  background: radial-gradient(circle at bottom right, rgba(74,201,227,.05) 0%, transparent 65%);
+  opacity: 0; transition: opacity .2s;
+}
+.icard:hover { border-color: rgba(74,201,227,.45); transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(74,201,227,.1), 0 10px 30px rgba(74,201,227,.12); }
+.icard:hover::before { opacity: 1; }
+.iico { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 10px; }
+.iico.r { background: rgba(212,20,19,.15); color: #ff6b6b; }
+.iico.y { background: rgba(176,120,0,.15); color: #ffd166; }
+.iico.c { background: rgba(74,201,227,.12); color: var(--cyan); }
+.iico.g { background: rgba(90,173,18,.15); color: #90ee60; }
+.ival { font-size: 26px; font-weight: 800; color: var(--cyan); line-height: 1; text-shadow: 0 0 20px rgba(74,201,227,.7), 0 0 40px rgba(74,201,227,.3); }
+.ilbl { font-size: 11px; color: rgba(255,255,255,.4); margin-top: 4px; font-weight: 500; line-height: 1.4; }
+
+.pr-causes, .pr-segs {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.08); border-radius: 13px;
+  padding: 14px 16px; box-shadow: var(--s1);
+}
+.coltitle { font-size: 13px; font-weight: 800; color: var(--n-0); margin-bottom: 10px; }
+
+.cause { display: flex; gap: 9px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.cause:last-child { border-bottom: none; }
+.cdot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; flex-shrink: 0; margin-top: 5px; box-shadow: 0 0 6px rgba(74,201,227,.6); }
+.ctxt { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.5; }
+.ctxt b { color: rgba(255,255,255,.8); font-weight: 700; }
+
+.sbar { margin-bottom: 9px; }
+.sbar:last-child { margin-bottom: 0; }
+.sbar-top { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,.5); font-weight: 600; margin-bottom: 4px; }
+.strack { height: 6px; background: rgba(255,255,255,.08); border-radius: 100px; overflow: hidden; }
+.sfill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, #2BB8D0, var(--cyan)); box-shadow: 0 0 8px rgba(74,201,227,.4); }
+
+/* ─── PANEL: SOLUCIÓN ────────────────────────────── */
+.sol-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr 1fr; gap: 13px; height: 100%; }
+
+.sol-banner {
+  grid-column: 1/-1;
+  background: rgba(74,201,227,.06);
+  border: 1px solid rgba(74,201,227,.18); border-radius: 14px;
+  padding: 18px 22px; display: flex; gap: 18px; align-items: flex-start;
+}
+.sol-ico {
+  width: 50px; height: 50px; background: rgba(74,201,227,.12); border-radius: 12px;
+  border: 1px solid rgba(74,201,227,.25); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--cyan);
+}
+.fc {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.07); border-radius: 13px;
+  padding: 16px 18px; box-shadow: var(--s1);
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  position: relative; overflow: hidden;
+}
+.fc::before {
+  content: ''; position: absolute; inset: 0; border-radius: 13px;
+  background: radial-gradient(circle at top right, rgba(74,201,227,.07) 0%, transparent 55%);
+  opacity: 0; transition: opacity .2s;
+}
+.fc:hover { border-color: rgba(74,201,227,.45); transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(74,201,227,.12), 0 10px 30px rgba(74,201,227,.1); }
+.fc:hover::before { opacity: 1; }
+.fi {
+  width: 40px; height: 40px; border-radius: 10px; background: rgba(74,201,227,.1);
+  border: 1px solid rgba(74,201,227,.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--cyan); margin-bottom: 11px;
+}
+.ft { font-size: 13px; font-weight: 700; color: var(--n-0); margin-bottom: 5px; }
+.fd { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.55; }
+
+/* ─── PANEL: ROADMAP ─────────────────────────────── */
+.rm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; height: 100%; }
+
+.rm-timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+.rm-timeline::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,.08); }
+
+.ritem { display: flex; gap: 14px; padding-bottom: 14px; position: relative; flex: 1; }
+.ritem:last-child { padding-bottom: 0; }
+.rdot {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; position: relative; z-index: 1;
+}
+.rdot.done   { background: var(--cyan); color: var(--black); box-shadow: 0 0 12px rgba(74,201,227,.5); }
+.rdot.active { background: rgba(74,201,227,.15); color: var(--cyan); box-shadow: 0 0 0 3px rgba(74,201,227,.2), 0 0 14px rgba(74,201,227,.2); border: 1px solid rgba(74,201,227,.4); }
+.rdot.soon   { background: rgba(255,255,255,.05); border: 2px solid rgba(255,255,255,.1); color: rgba(255,255,255,.25); }
+
+.rcrd {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.08); border-radius: 11px;
+  padding: 11px 14px; flex: 1; box-shadow: var(--s1);
+}
+.rphase { font-size: 10px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 1.1px; margin-bottom: 2px; opacity: .7; }
+.rtitle { font-size: 13px; font-weight: 700; color: var(--n-0); margin-bottom: 3px; }
+.rdesc  { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.45; margin-bottom: 7px; }
+
+.rm-summary {
+  display: flex; flex-direction: column; gap: 11px; align-self: start;
+}
+.rsum-card {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.08); border-radius: 13px;
+  padding: 16px 18px; box-shadow: var(--s1);
+}
+.rsum-head { font-size: 13px; font-weight: 800; color: var(--n-0); margin-bottom: 11px; }
+.rsi { display: flex; align-items: flex-start; gap: 10px; padding: 9px; background: rgba(255,255,255,.03); border-radius: 9px; margin-bottom: 7px; }
+.rsi:last-child { margin-bottom: 0; }
+.rnum { width: 28px; height: 28px; border-radius: 50%; background: rgba(74,201,227,.12); color: var(--cyan); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(74,201,227,.2); }
+.rsi-t { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.4; }
+.rsi-t b { color: rgba(255,255,255,.75); display: block; font-size: 12px; font-weight: 700; }
+
+.impact-box { background: rgba(74,201,227,.07); border: 1px solid rgba(74,201,227,.18); border-radius: 11px; padding: 14px 16px; }
+.ib-eye { font-size: 10px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 5px; opacity: .7; }
+.ib-val { font-size: 26px; font-weight: 800; color: var(--cyan); text-shadow: 0 0 24px rgba(74,201,227,.7), 0 0 48px rgba(74,201,227,.3); }
+.ib-desc { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 2px; }
+
+/* ─── PANEL: MÁS ─────────────────────────────────── */
+.mas-grid { display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: auto 1fr 1fr; gap: 13px; height: 100%; }
+.mas-header { grid-column: 1/-1; }
+.mas-card {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.07); border-radius: 14px;
+  padding: 20px 18px; box-shadow: var(--s1);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  transition: border-color .2s, transform .2s, box-shadow .2s; cursor: default;
+  position: relative; overflow: hidden;
+}
+.mas-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: 14px;
+  background: radial-gradient(circle at top left, rgba(74,201,227,.06) 0%, transparent 60%);
+  opacity: 0; transition: opacity .2s;
+}
+.mas-card:hover { border-color: rgba(74,201,227,.45); transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(74,201,227,.12), 0 12px 36px rgba(74,201,227,.12); }
+.mas-card:hover::before { opacity: 1; }
+.mas-ico {
+  width: 44px; height: 44px; border-radius: 11px; background: rgba(74,201,227,.1);
+  border: 1px solid rgba(74,201,227,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: var(--cyan);
+  box-shadow: 0 0 12px rgba(74,201,227,.15);
+}
+.mas-t { font-size: 14px; font-weight: 700; color: var(--n-0); }
+.mas-d { font-size: 12px; color: rgba(255,255,255,.35); line-height: 1.55; }
+
+/* ─── PANEL: DEMO ────────────────────────────────── */
+.demo-wrap { display: flex; gap: 16px; height: 100%; }
+.demo-screen {
+  flex: 1; background: var(--black-3); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 0 40px rgba(74,201,227,.05);
+}
+.demo-top {
+  background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 10px 14px; display: flex; align-items: center; gap: 12px;
+}
+.demo-dots { display: flex; gap: 6px; }
+.demo-dots span { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.demo-url {
+  flex: 1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 6px; padding: 3px 10px; font-size: 11px;
+  color: rgba(255,255,255,.3); font-family: monospace; text-align: center;
+}
+.demo-body {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+}
+.demo-placeholder {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; text-align: center; padding: 32px;
+}
+.demo-placeholder i {
+  font-size: 56px; color: var(--cyan);
+  text-shadow: 0 0 30px rgba(74,201,227,.6), 0 0 60px rgba(74,201,227,.3);
+  animation: logopulse 3s ease-in-out infinite;
+}
+.demo-big { font-size: 22px; font-weight: 800; color: var(--n-0); letter-spacing: -.4px; }
+.demo-small { font-size: 13px; color: rgba(255,255,255,.3); }
+.demo-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px; margin-top: 8px;
+  background: var(--cyan); color: var(--black); font-family: inherit;
+  font-size: 13px; font-weight: 700; padding: 9px 22px; border-radius: 100px;
+  border: none; cursor: pointer; text-align: center;
+  box-shadow: 0 0 20px rgba(74,201,227,.4);
+  transition: box-shadow .2s, transform .15s;
+}
+.demo-btn:hover { box-shadow: 0 0 32px rgba(74,201,227,.7); transform: translateY(-1px); }
+
+/* ─── PANEL: THANK YOU ───────────────────────────── */
+.ty-wrap {
+  height: 100%; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.ty-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,201,227,.08) 0%, transparent 65%);
+  animation: tyglowpulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes tyglowpulse {
+  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: .6; }
+  50% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
+}
+.ty-content {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 16px; position: relative; z-index: 1;
+}
+.ty-robot {
+  width: 72px; height: 72px; border-radius: 18px; background: var(--cyan);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; color: var(--black);
+  box-shadow: 0 0 24px rgba(74,201,227,.7), 0 0 60px rgba(74,201,227,.3);
+  animation: logopulse 3s ease-in-out infinite;
+}
+.ty-title {
+  font-size: 52px; font-weight: 800; color: var(--n-0); letter-spacing: -2px; line-height: 1;
+}
+.ty-title em { color: var(--cyan); font-style: normal; text-shadow: 0 0 24px rgba(74,201,227,.8), 0 0 50px rgba(74,201,227,.4); }
+.ty-sub { font-size: 14px; color: rgba(255,255,255,.4); letter-spacing: .2px; }
+.ty-divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); border-radius: 2px; }
+.ty-team { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.ty-member { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ty-member img {
+  width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+  box-shadow: 0 0 0 2px var(--cyan), 0 0 0 4px var(--black), 0 0 12px rgba(74,201,227,.3);
+  transition: box-shadow .2s, transform .2s;
+}
+.ty-member:hover img { box-shadow: 0 0 0 2px var(--cyan), 0 0 0 4px var(--black), 0 0 24px rgba(74,201,227,.6); transform: translateY(-3px); }
+.ty-member span { font-size: 11px; color: rgba(255,255,255,.4); font-weight: 600; }
+.ty-tag {
+  background: rgba(74,201,227,.08); border: 1px solid rgba(74,201,227,.2);
+  color: var(--cyan); font-size: 12px; font-weight: 700; padding: 6px 18px;
+  border-radius: 100px; letter-spacing: .5px;
+  box-shadow: 0 0 14px rgba(74,201,227,.15);
+}
+
+/* ─── FOCUS / A11Y ───────────────────────────────── */
+*:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ── NAV ─────────────────────────────────── -->
+<nav class="nav">
+  <a class="nav-brand" href="#">
+    <div class="nav-logo"><i class="bi bi-robot"></i></div>
+    <div class="nav-sep"></div>
+    <div class="nav-name">
+      <span class="nav-name-top">aplazo</span>
+      <span class="nav-name-bot">Activa<em>Bot</em></span>
+    </div>
+  </a>
+  <span class="nav-pill"><i class="bi bi-robot"></i> Hackathon 2026</span>
+</nav>
+
+<!-- ── TABS ────────────────────────────────── -->
+<div class="tabbar">
+  <div class="tabbar-inner">
+    <button class="tb on"  onclick="go('equipo',this)"><i class="bi bi-people-fill"></i> Team</button>
+    <button class="tb"     onclick="go('problema',this)"><i class="bi bi-exclamation-triangle-fill"></i> Problem</button>
+    <button class="tb"     onclick="go('solucion',this)"><i class="bi bi-lightning-charge-fill"></i> Solution <span class="tb-chip">NEW</span></button>
+    <button class="tb"     onclick="go('impacto',this)"><i class="bi bi-graph-up-arrow"></i> Impact</button>
+    <button class="tb"     onclick="go('demo',this)"><i class="bi bi-play-btn-fill"></i> Demo</button>
+    <button class="tb"     onclick="go('thanks',this)"><i class="bi bi-heart-fill"></i> Thank You</button>
+  </div>
+</div>
+
+<!-- ── PANELS ───────────────────────────────── -->
+<div class="panels">
+
+  <!-- TEAM -->
+  <div id="pnl-equipo" class="pnl on">
+    <div class="eq-wrap">
+
+      <div class="eq-foto-col">
+        <div class="eq-foto-box">
+          <i class="bi bi-camera-fill"></i>
+          <p>Team photo<br>upload your image here</p>
+        </div>
+        <div class="eq-team-name">Team ActivaBot 🤖</div>
+        <div class="eq-team-sub">Aplazo Hackathon · 2026</div>
+      </div>
+
+      <div class="eq-members">
+        <div class="mrow">
+          <img class="av-img" src="https://avatars.slack-edge.com/2026-02-17/10557733921760_7fde13f654e4802a933a_original.png" alt="Ana Martínez">
+          <div style="flex:1">
+            <div class="mn">Ana Martínez</div>
+            <div class="mr">QA Engineer</div>
+          </div>
+        </div>
+        <div class="mrow">
+          <img class="av-img" src="https://avatars.slack-edge.com/2026-02-13/10506847541126_461a7fae533c53189dc6_original.png" alt="Blanca Cortés">
+          <div style="flex:1">
+            <div class="mn">Blanca Cortés</div>
+            <div class="mr">Junior Operation Manager</div>
+          </div>
+        </div>
+        <div class="mrow">
+          <img class="av-img" src="https://avatars.slack-edge.com/2022-03-07/3203672999987_2a0df1475972ffafbb54_original.png" alt="Enrique Díaz">
+          <div style="flex:1">
+            <div class="mn">Enrique Díaz</div>
+            <div class="mr">Backend Developer</div>
+          </div>
+        </div>
+        <div class="mrow">
+          <img class="av-img" src="https://avatars.slack-edge.com/2025-01-22/8330777832901_c9277d47fa5fb21d1e44_original.png" alt="Enrique Pérez">
+          <div style="flex:1">
+            <div class="mn">Enrique Pérez</div>
+            <div class="mr">Fullstack Engineer / BNPL Core</div>
+          </div>
+        </div>
+        <div class="mrow">
+          <img class="av-img" src="https://avatars.slack-edge.com/2025-06-24/9082774395911_d7f41c9398675a9219e6_original.png" alt="Leonardo Rodríguez">
+          <div style="flex:1">
+            <div class="mn">Leonardo Rodríguez</div>
+            <div class="mr">Software Architect</div>
+          </div>
+        </div>
+        <div class="mrow">
+          <img class="av-img" src="https://avatars.slack-edge.com/2024-08-05/7529503410546_387c4ebdff23d12c9bb0_original.jpg" alt="Omar Pérez">
+          <div style="flex:1">
+            <div class="mn">Omar Pérez</div>
+            <div class="mr">Tech Lead | FRAC | Identity</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div id="pnl-problema" class="pnl">
+    <div class="pr-grid">
+
+      <div class="pr-banner">
+        <div class="pr-ico"><i class="bi bi-person-x-fill"></i></div>
+        <div>
+          <div class="pr-bh">Aplazo's Silent Churn</div>
+          <p class="pr-bt">A significant share of approved users never reach their second transaction. Credit is approved, limit assigned — but real activation never happens. This means direct GMV loss and wasted CAC from acquisition spend.</p>
+        </div>
+      </div>
+
+      <div class="pr-causes" style="grid-column:1/-1">
+        <div class="coltitle">Why do they leave without buying?</div>
+        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>Onboarding friction:</b> Users can't find a merchant at the moment of approval.</div></div>
+        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>Generic messaging:</b> Communications not tailored to user history or behavior.</div></div>
+        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>Wrong timing:</b> Campaigns miss the user's actual purchase intent windows.</div></div>
+        <div class="cause"><div class="cdot"></div><div class="ctxt"><b>No smart nudges:</b> No system detects early abandonment signals before users churn.</div></div>
+      </div>
+
+      <div class="pr-segs" style="grid-column:1/-1">
+        <div class="coltitle">Priority segments</div>
+        <div class="sbar">
+          <div class="sbar-top"><span>Approved — no first purchase</span><span style="color:var(--red);font-size:10px">High</span></div>
+          <div class="strack"><div class="sfill" style="width:85%"></div></div>
+        </div>
+        <div class="sbar">
+          <div class="sbar-top"><span>1 purchase, inactive 30+ days</span><span style="color:var(--red);font-size:10px">High</span></div>
+          <div class="strack"><div class="sfill" style="width:70%"></div></div>
+        </div>
+        <div class="sbar">
+          <div class="sbar-top"><span>2–3 purchases, inactive 60+ days</span><span style="color:var(--yellow);font-size:10px">Medium</span></div>
+          <div class="strack"><div class="sfill" style="width:45%"></div></div>
+        </div>
+        <div class="sbar">
+          <div class="sbar-top"><span>Frequent actives (retain)</span><span style="color:var(--green);font-size:10px">Low</span></div>
+          <div class="strack"><div class="sfill" style="width:20%;background:linear-gradient(90deg,#3aad12,var(--green))"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOLUTION -->
+  <div id="pnl-solucion" class="pnl">
+    <div class="sol-grid">
+
+      <div class="sol-banner">
+        <div class="sol-ico"><i class="bi bi-robot"></i></div>
+        <div>
+          <div class="pr-bh">How does ActivaBot work?</div>
+          <p class="pr-bt">It combines propensity models, real-time behavioral signals and omnichannel messaging to reach the right user, with the right message, at the exact right moment. BigQuery + CleverTap + Claude API orchestrate fully automated reactivation journeys.</p>
+        </div>
+      </div>
+
+      <div class="fc">
+        <div class="fi"><i class="bi bi-graph-up-arrow"></i></div>
+        <div class="ft">Propensity Model</div>
+        <p class="fd">Predicts which users are most likely to reactivate in the next 48h using BigQuery behavioral signals.</p>
+      </div>
+      <div class="fc">
+        <div class="fi"><i class="bi bi-envelope-heart-fill"></i></div>
+        <div class="ft">Hyper-personalized Messages</div>
+        <p class="fd">Claude API generates dynamic copy per segment: history, available limit, nearby merchants and personalized offers.</p>
+      </div>
+      <div class="fc">
+        <div class="fi"><i class="bi bi-broadcast-pin"></i></div>
+        <div class="ft">Automatic Omnichannel</div>
+        <p class="fd">Push, email, SMS and in-app orchestrated via CleverTap Journeys based on each user's preferred channel.</p>
+      </div>
+      <div class="fc">
+        <div class="fi"><i class="bi bi-shield-check-fill"></i></div>
+        <div class="ft">DND Frequency Control</div>
+        <p class="fd">Smart system that prevents message overload and protects the Aplazo brand experience.</p>
+      </div>
+      <div class="fc">
+        <div class="fi"><i class="bi bi-bar-chart-fill"></i></div>
+        <div class="ft">Results Dashboard</div>
+        <p class="fd">Real-time metrics: reactivation rate, CTR, conversion and GMV generated by the bot.</p>
+      </div>
+      <div class="fc">
+        <div class="fi"><i class="bi bi-arrow-repeat"></i></div>
+        <div class="ft">Continuous Learning</div>
+        <p class="fd">The model feeds back from every interaction to improve predictions week over week.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- IMPACT -->
+  <div id="pnl-impacto" class="pnl">
+    <div class="pr-grid">
+
+      <div class="pr-impacts" style="grid-column:1/-1">
+        <div class="icard">
+          <div class="iico r"><i class="bi bi-graph-down-arrow"></i></div>
+          <div class="ival">~40%</div>
+          <div class="ilbl">Approved users never activate their credit</div>
+        </div>
+        <div class="icard">
+          <div class="iico y"><i class="bi bi-currency-exchange"></i></div>
+          <div class="ival">$XX M</div>
+          <div class="ilbl">Dormant GMV potential every month</div>
+        </div>
+        <div class="icard">
+          <div class="iico c"><i class="bi bi-person-check-fill"></i></div>
+          <div class="ival">1 in 3</div>
+          <div class="ilbl">Users don't return after 30 days inactive</div>
+        </div>
+        <div class="icard">
+          <div class="iico g"><i class="bi bi-arrow-up-right-circle-fill"></i></div>
+          <div class="ival">3x</div>
+          <div class="ilbl">Higher LTV when reactivated on time</div>
+        </div>
+      </div>
+
+      <!-- roadmap as impact context -->
+      <div class="rm-grid" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:13px;">
+        <div class="rm-timeline">
+          <div class="ritem">
+            <div class="rdot done"><i class="bi bi-check-lg"></i></div>
+            <div class="rcrd">
+              <div class="rphase">Phase 0 · Hackathon 2026</div>
+              <div class="rtitle">Working Prototype</div>
+              <p class="rdesc">48h MVP: base model, BigQuery integration, first CleverTap journey and live demo.</p>
+              <span class="pill p-ok"><i class="bi bi-check-circle-fill"></i> Completed</span>
+            </div>
+          </div>
+          <div class="ritem">
+            <div class="rdot active"><i class="bi bi-lightning-charge-fill"></i></div>
+            <div class="rcrd">
+              <div class="rphase">Phase 1 · Q3 2026</div>
+              <div class="rtitle">Real Segment Pilot</div>
+              <p class="rdesc">A/B test with 10k users. Model validation and personalized messaging in production.</p>
+              <span class="pill p-live"><i class="bi bi-play-fill"></i> In progress</span>
+            </div>
+          </div>
+          <div class="ritem">
+            <div class="rdot soon"><i class="bi bi-three-dots"></i></div>
+            <div class="rcrd">
+              <div class="rphase">Phase 2 · Q4 2026</div>
+              <div class="rtitle">Full Scale Rollout</div>
+              <p class="rdesc">Deploy to full inactive user base. Production dashboard and continuous optimization.</p>
+              <span class="pill p-warn"><i class="bi bi-clock-fill"></i> Coming soon</span>
+            </div>
+          </div>
+          <div class="ritem">
+            <div class="rdot soon"><i class="bi bi-three-dots"></i></div>
+            <div class="rcrd">
+              <div class="rphase">Phase 3 · Q1 2027</div>
+              <div class="rtitle">ActivaBot 2.0</div>
+              <p class="rdesc">Expansion: credit limit upsell, RC cross-sell, retention of good payers.</p>
+              <span class="pill p-warn"><i class="bi bi-clock-fill"></i> Planned</span>
+            </div>
+          </div>
+        </div>
+        <div class="rm-summary">
+          <div class="rsum-card">
+            <div class="eye">Executive summary</div>
+            <div class="rsum-head">From hackathon to product</div>
+            <div class="rsi"><div class="rnum">01</div><div class="rsi-t"><b>Prototype · Done</b>Functional demo with real integration at Hackathon 2026.</div></div>
+            <div class="rsi"><div class="rnum">02</div><div class="rsi-t"><b>Pilot · Q3 2026</b>10k users, A/B test, first production impact metrics.</div></div>
+            <div class="rsi"><div class="rnum">03</div><div class="rsi-t"><b>Scale · Q4 2026</b>100% inactive base, continuous optimization, executive dashboard.</div></div>
+            <div class="rsi"><div class="rnum">04</div><div class="rsi-t"><b>ActivaBot 2.0 · Q1 2027</b>New use cases: upsell, cross-sell, retention.</div></div>
+          </div>
+          <div class="impact-box">
+            <div class="ib-eye">Expected impact</div>
+            <div class="ib-val">+$X M GMV</div>
+            <div class="ib-desc">in the first 6 months post-pilot</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEMO -->
+  <div id="pnl-demo" class="pnl">
+    <div class="demo-wrap">
+      <div class="demo-screen">
+        <div class="demo-top">
+          <div class="demo-dots">
+            <span style="background:#ff5f57"></span>
+            <span style="background:#febc2e"></span>
+            <span style="background:#28c840"></span>
+          </div>
+          <div class="demo-url">activabot.aplazo.mx · live demo</div>
+        </div>
+        <div class="demo-body">
+          <div class="demo-placeholder">
+            <i class="bi bi-play-circle-fill"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU -->
+  <div id="pnl-thanks" class="pnl">
+    <div class="ty-wrap">
+      <div class="ty-glow"></div>
+      <div class="ty-content">
+        <div class="ty-robot"><i class="bi bi-robot"></i></div>
+        <div class="ty-title">Thank <em>You</em></div>
+        <div class="ty-sub">Built with ❤️ in 48 hours at Aplazo Hackathon 2026</div>
+        <div class="ty-divider"></div>
+        <div class="ty-team">
+          <div class="ty-member">
+            <img src="https://avatars.slack-edge.com/2026-02-17/10557733921760_7fde13f654e4802a933a_original.png" alt="Ana">
+            <span>Ana Martínez</span>
+          </div>
+          <div class="ty-member">
+            <img src="https://avatars.slack-edge.com/2026-02-13/10506847541126_461a7fae533c53189dc6_original.png" alt="Blanca">
+            <span>Blanca Cortés</span>
+          </div>
+          <div class="ty-member">
+            <img src="https://avatars.slack-edge.com/2022-03-07/3203672999987_2a0df1475972ffafbb54_original.png" alt="Enrique D">
+            <span>Enrique Díaz</span>
+          </div>
+          <div class="ty-member">
+            <img src="https://avatars.slack-edge.com/2025-01-22/8330777832901_c9277d47fa5fb21d1e44_original.png" alt="Enrique P">
+            <span>Enrique Pérez</span>
+          </div>
+          <div class="ty-member">
+            <img src="https://avatars.slack-edge.com/2025-06-24/9082774395911_d7f41c9398675a9219e6_original.png" alt="Leonardo">
+            <span>Leonardo Rodríguez</span>
+          </div>
+          <div class="ty-member">
+            <img src="https://avatars.slack-edge.com/2024-08-05/7529503410546_387c4ebdff23d12c9bb0_original.jpg" alt="Omar">
+            <span>Omar Pérez</span>
+          </div>
+        </div>
+        <div class="ty-tag">Team ActivaBot 🤖</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panels -->
+
+<!-- ── FOOTER ───────────────────────────────── -->
+<footer class="foot">
+  <div class="foot-r">Hackathon 2026 · Team ActivaBot 🤖</div>
+</footer>
+
+</div><!-- /app -->
+
+<script>
+function go(id, btn) {
+  document.querySelectorAll('.pnl').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('on'));
+  document.getElementById('pnl-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>
