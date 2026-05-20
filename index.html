@@ -451,69 +451,70 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 .mas-t { font-size: 14px; font-weight: 700; color: var(--n-0); }
 .mas-d { font-size: 12px; color: rgba(255,255,255,.35); line-height: 1.55; }
 
-/* ─── PANEL: PROBLEM (text only) ────────────────── */
-.prob-text-wrap {
-  height: 100%; display: flex; flex-direction: column;
-  justify-content: center; max-width: 720px; margin: 0 auto;
-  gap: 40px; padding: 8px 0;
-}
-.prob-headline { display: flex; flex-direction: column; gap: 10px; }
-.prob-label {
-  font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase;
-  letter-spacing: 2px; opacity: .8;
-}
-.prob-h2 {
-  font-size: 38px; font-weight: 800; color: var(--n-0);
-  letter-spacing: -1px; line-height: 1.05;
-}
+/* ─── PROBLEM / SHARED TEXT STYLES ──────────────── */
+.prob-label { font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 2px; opacity: .8; margin-bottom: 6px; }
+.prob-h2 { font-size: 32px; font-weight: 800; color: var(--n-0); letter-spacing: -.8px; line-height: 1.1; }
 .prob-h2 em { color: var(--cyan); font-style: normal; text-shadow: 0 0 20px rgba(74,201,227,.6); }
-.prob-lead {
-  font-size: 16px; color: rgba(255,255,255,.45); line-height: 1.65;
-  max-width: 580px;
-}
-.prob-points { display: flex; flex-direction: column; gap: 14px; }
-.prob-block { display: flex; flex-direction: column; gap: 12px; }
-.prob-block-title {
-  font-size: 11px; font-weight: 700; color: rgba(255,255,255,.35);
-  text-transform: uppercase; letter-spacing: 1.5px;
-  display: flex; align-items: center; gap: 7px;
-  padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.prob-block-title i { color: var(--cyan); font-size: 12px; }
-.prob-point {
-  display: flex; align-items: flex-start; gap: 18px;
-  padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.05);
-}
-.prob-point:last-child { border-bottom: none; padding-bottom: 0; }
-.prob-num {
-  font-size: 11px; font-weight: 800; color: var(--cyan); opacity: .6;
-  letter-spacing: 1px; flex-shrink: 0; margin-top: 2px; min-width: 24px;
-}
-.prob-pt { font-size: 15px; font-weight: 700; color: var(--n-0); margin-bottom: 4px; }
-.prob-pd { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.6; }
+.prob-lead { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.65; margin-top: 8px; }
+.prob-points { display: flex; flex-direction: column; gap: 10px; }
+.prob-point { display: flex; align-items: flex-start; gap: 14px; }
+.prob-num { font-size: 11px; font-weight: 800; color: var(--cyan); opacity: .6; letter-spacing: 1px; flex-shrink: 0; margin-top: 2px; min-width: 22px; }
+.prob-pt { font-size: 13px; font-weight: 700; color: var(--n-0); margin-bottom: 2px; }
+.prob-pd { font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.55; }
 
-/* ─── PANEL: IMPACT ──────────────────────────────── */
-.imp-wrap {
-  height: 100%; display: flex; flex-direction: column;
-  justify-content: center; max-width: 820px; margin: 0 auto;
-  gap: 24px; padding: 8px 0;
-}
-.imp-headline { display: flex; flex-direction: column; gap: 8px; }
-.imp-cards {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
-}
-.imp-stat {
-  background: var(--black-3); border: 1px solid rgba(74,201,227,.15);
-  border-radius: 13px; padding: 18px 20px; text-align: center;
-  transition: border-color .2s, transform .2s;
-}
+/* ─── SUB-TABS ───────────────────────────────────── */
+.sub-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-shrink: 0; }
+.stb { padding: 5px 14px; border-radius: 100px; border: 1px solid rgba(255,255,255,.1); background: none; color: rgba(255,255,255,.35); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .15s; }
+.stb:hover { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.2); }
+.stb.on { background: var(--cyan); color: var(--black); border-color: var(--cyan); box-shadow: 0 0 14px rgba(74,201,227,.4); }
+.sub-pnl { display: none; flex: 1; min-height: 0; }
+.sub-pnl.on { display: flex; flex-direction: column; }
+#pnl-problema { display: none; flex-direction: column; }
+#pnl-problema.on { display: flex; }
+
+/* ─── TWO COL LAYOUT ─────────────────────────────── */
+.prob-two-col { display: grid; grid-template-columns: 1fr 1.2fr; gap: 18px; flex: 1; min-height: 0; align-items: start; }
+.prob-left { display: flex; flex-direction: column; justify-content: center; }
+.prob-right { display: flex; flex-direction: column; gap: 12px; }
+.evid-item { display: flex; align-items: flex-start; gap: 4px; font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+/* ─── CHARTS ─────────────────────────────────────── */
+.chart-card { background: var(--black-3); border: 1px solid rgba(255,255,255,.07); border-radius: 13px; padding: 14px 16px; }
+.chart-title { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.28); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; }
+.funnel-wrap { display: flex; flex-direction: column; gap: 3px; }
+.funnel-step { display: flex; flex-direction: column; gap: 3px; }
+.funnel-bar-wrap { height: 20px; background: rgba(255,255,255,.04); border-radius: 4px; overflow: hidden; }
+.funnel-bar { height: 100%; border-radius: 4px; }
+.funnel-label { display: flex; justify-content: space-between; font-size: 11px; margin-top: 1px; }
+.funnel-name { color: rgba(255,255,255,.45); font-weight: 500; }
+.funnel-val { font-weight: 700; color: rgba(255,255,255,.65); }
+.funnel-arrow { display: flex; align-items: center; gap: 6px; padding: 2px 0 2px 6px; font-size: 10px; color: rgba(255,255,255,.2); }
+.funnel-drop { font-weight: 700; font-size: 10px; }
+.bar-chart { display: flex; flex-direction: column; gap: 9px; }
+.bar-row { display: flex; align-items: center; gap: 10px; }
+.bar-label { font-size: 11px; color: rgba(255,255,255,.4); min-width: 120px; flex-shrink: 0; line-height: 1.3; }
+.bar-track { flex: 1; height: 22px; background: rgba(255,255,255,.05); border-radius: 4px; overflow: visible; position: relative; }
+.bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #2BB8D0, var(--cyan)); box-shadow: 0 0 8px rgba(74,201,227,.25); position: relative; min-width: 2px; display: flex; align-items: center; }
+.bar-pct { font-size: 11px; font-weight: 700; color: var(--n-0); margin-left: 6px; white-space: nowrap; }
+
+/* ─── MECHANISM QUOTE ────────────────────────────── */
+.mechanism-quote { background: rgba(74,201,227,.06); border-left: 3px solid var(--cyan); border-radius: 0 10px 10px 0; padding: 11px 14px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.65); font-style: italic; line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
+.mechanism-quote i { color: var(--cyan); font-size: 16px; flex-shrink: 0; margin-top: 1px; opacity: .6; }
+
+/* ─── SOLUTION PROOF ROW ─────────────────────────── */
+.sol-proof-row { display: grid; grid-template-columns: 200px 1fr; gap: 12px; align-items: start; }
+.sol-proof-cards-col { display: flex; flex-direction: column; gap: 10px; }
+
+/* ─── IMPACT ─────────────────────────────────────── */
+.imp-wrap { height: 100%; display: flex; flex-direction: column; justify-content: center; max-width: 900px; margin: 0 auto; gap: 16px; padding: 8px 0; }
+.imp-takeaway { background: linear-gradient(135deg, rgba(74,201,227,.12) 0%, rgba(74,201,227,.04) 100%); border: 1px solid rgba(74,201,227,.25); border-radius: 14px; padding: 16px 20px; }
+.imp-takeaway-label { font-size: 10px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 1.8px; margin-bottom: 6px; opacity: .8; }
+.imp-takeaway-text { font-size: 19px; font-weight: 800; color: var(--n-0); line-height: 1.3; letter-spacing: -.3px; }
+.imp-takeaway-text em { color: var(--cyan); font-style: normal; text-shadow: 0 0 20px rgba(74,201,227,.5); }
+.imp-stat { background: var(--black-3); border: 1px solid rgba(74,201,227,.15); border-radius: 13px; padding: 16px 18px; text-align: center; transition: border-color .2s, transform .2s; }
 .imp-stat:hover { border-color: rgba(74,201,227,.4); transform: translateY(-2px); }
-.imp-stat-val {
-  font-size: 32px; font-weight: 800; color: var(--cyan); line-height: 1;
-  text-shadow: 0 0 20px rgba(74,201,227,.6), 0 0 40px rgba(74,201,227,.25);
-  margin-bottom: 6px;
-}
-.imp-stat-lbl { font-size: 12px; color: rgba(255,255,255,.4); font-weight: 500; line-height: 1.4; }
+.imp-stat-val { font-size: 28px; font-weight: 800; color: var(--cyan); line-height: 1; text-shadow: 0 0 20px rgba(74,201,227,.6), 0 0 40px rgba(74,201,227,.25); margin-bottom: 6px; }
+.imp-stat-lbl { font-size: 11px; color: rgba(255,255,255,.4); font-weight: 500; line-height: 1.4; }
 
 /* ─── PANEL: DEMO ────────────────────────────────── */
 .demo-wrap { display: flex; gap: 16px; height: 100%; }
@@ -704,54 +705,145 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- PROBLEM -->
   <div id="pnl-problema" class="pnl">
-    <div class="prob-text-wrap" style="max-width:800px;">
+    <!-- sub-tabs -->
+    <div class="sub-tabs">
+      <button class="stb on" onclick="goSub('prob1',this)">1 · The Problem</button>
+      <button class="stb"    onclick="goSub('prob2',this)">2 · Hypothesis & Evidence</button>
+    </div>
 
-      <div class="prob-headline">
-        <div class="prob-label">The Problem</div>
-        <h2 class="prob-h2">The digital channel <em>leaves users alone</em></h2>
-        <p class="prob-lead">Unlike a physical store, in digital there's nobody walking the user through registration. The result: massive losses at two critical funnel points — without the product ever failing.</p>
+    <!-- SUB 1: The Problem -->
+    <div id="sub-prob1" class="sub-pnl on">
+      <div class="prob-two-col">
+        <div class="prob-left">
+          <div class="prob-label">The Problem</div>
+          <h2 class="prob-h2">The digital channel <em>leaves users alone</em></h2>
+          <p class="prob-lead">Unlike a physical store, in digital there's nobody walking the user through registration. The result: massive losses in the funnel without the product ever failing.</p>
+          <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
+            <div class="prob-point" style="padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)">
+              <span class="prob-num">01</span>
+              <div><div class="prob-pt">−32,762 users/month drop before KYC</div><div class="prob-pd">Zero technical friction — the product didn't fail.</div></div>
+            </div>
+            <div class="prob-point" style="padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)">
+              <span class="prob-num">02</span>
+              <div><div class="prob-pt">26% don't understand why data is needed</div><div class="prob-pd">22% fear fraud. "I'll do it later" is an escape, not a lack of time.</div></div>
+            </div>
+            <div class="prob-point">
+              <span class="prob-num">03</span>
+              <div><div class="prob-pt">~124,000 users/month stuck with no contact</div><div class="prob-pd">No nudge, no guidance, no recovery flow.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="prob-right">
+          <div class="chart-card">
+            <div class="chart-title">Monthly Average Funnel 2026 (Jan–Apr)</div>
+            <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+              <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#4AC9E3;display:inline-block"></span> Normal drop</span>
+              <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#ff6b6b;display:inline-block"></span> NOT our rejection</span>
+              <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#ffd166;display:inline-block"></span> Partial rejection</span>
+            </div>
+            <div style="position:relative;width:100%;height:320px;">
+              <canvas id="funnelChart" role="img" aria-label="Registration funnel chart showing user drop-off at each step from 131,156 started to 17,168 purchases">Funnel: Started 131,156 → KYC Evaluation 98,394 → KYC Verified 83,860 → Personal Info 79,033 → Requested Loan 38,236 → Purchase 17,168</canvas>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+            <script>
+            (function(){
+              var labels = ['Started signup','KYC Evaluation','KYC Verified','Personal Info','Requested loan','Purchase'];
+              var values = [131156, 98394, 83860, 79033, 38236, 17168];
+              var drops  = ['—', '-32,762 · -25% · NOT our rejection', '-14,534 · -14.8%', '-4,827 · -5.8%', '-21,803 · -36.6%', '-21,068 · -55.1% · NOT our rejection'];
+              var colors = ['#4AC9E3','#ff6b6b','#4AC9E3','#4AC9E3','#ffd166','#ff6b6b'];
+              var max = 131156;
+              var ctx = document.getElementById('funnelChart').getContext('2d');
+              new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: labels,
+                  datasets: [{
+                    data: values,
+                    backgroundColor: colors,
+                    borderRadius: 4,
+                    barPercentage: 0.75,
+                  }]
+                },
+                options: {
+                  indexAxis: 'y',
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                      callbacks: {
+                        label: function(ctx) {
+                          return ' ' + ctx.parsed.x.toLocaleString() + ' users';
+                        },
+                        afterLabel: function(ctx) {
+                          return drops[ctx.dataIndex];
+                        }
+                      }
+                    }
+                  },
+                  scales: {
+                    x: {
+                      max: max * 1.08,
+                      grid: { color: 'rgba(255,255,255,.05)' },
+                      ticks: { color: 'rgba(255,255,255,.35)', font: { size: 10 }, callback: function(v){ return (v/1000).toFixed(0)+'k'; } },
+                      border: { color: 'rgba(255,255,255,.08)' }
+                    },
+                    y: {
+                      grid: { display: false },
+                      ticks: { color: 'rgba(255,255,255,.6)', font: { size: 11 } },
+                      border: { color: 'rgba(255,255,255,.08)' }
+                    }
+                  }
+                }
+              });
+            })();
+            </script>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="prob-block">
-        <div class="prob-block-title"><i class="bi bi-funnel-fill"></i> Where the funnel drops (no rejections on our end)</div>
-        <div class="prob-points">
-          <div class="prob-point">
-            <span class="prob-num">01</span>
-            <div>
-              <div class="prob-pt">Started → KYC Evaluation: <em style="color:var(--cyan)">−32,762 users/month (−25%)</em></div>
-              <div class="prob-pd">Users abandon before attempting anything. Zero technical friction. These are the two moments where the product doesn't fail — and it's not a rejection.</div>
+    <!-- SUB 2: Hypothesis & Evidence -->
+    <div id="sub-prob2" class="sub-pnl">
+      <div class="prob-two-col">
+        <div class="prob-left">
+          <div class="prob-label">Our Hypothesis</div>
+          <h2 class="prob-h2" style="font-size:26px">It's not technical friction —<br>it's a lack of <em>intent & guidance</em></h2>
+          <p class="prob-lead" style="margin-top:10px">The data points to one clear pattern: users who receive guidance complete at dramatically higher rates. The problem is behavioral, not technical.</p>
+          <div style="margin-top:18px;display:flex;flex-direction:column;gap:8px;">
+            <div class="evid-item"><i class="bi bi-dot" style="color:var(--cyan);font-size:20px"></i><span><strong style="color:var(--n-0)">Card Barrier Study:</strong> 26% don't understand data requests · 22% fear fraud</span></div>
+            <div class="evid-item"><i class="bi bi-dot" style="color:var(--cyan);font-size:20px"></i><span><strong style="color:var(--n-0)">21,391 support tickets/month</strong> (19.9%) are product understanding questions</span></div>
+          </div>
+        </div>
+        <div class="prob-right" style="display:flex;flex-direction:column;gap:12px;">
+          <!-- Bar chart: Card Barrier -->
+          <div class="chart-card" style="flex:1">
+            <div class="chart-title">Card Barrier Study — Why users abandon</div>
+            <div class="bar-chart">
+              <div class="bar-row"><div class="bar-label">Don't understand data use</div><div class="bar-track"><div class="bar-fill" style="width:26%"><span class="bar-pct">26%</span></div></div></div>
+              <div class="bar-row"><div class="bar-label">Fear of fraud</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:rgba(255,107,107,.6)"><span class="bar-pct">22%</span></div></div></div>
+              <div class="bar-row"><div class="bar-label">"I'll do it later"</div><div class="bar-track"><div class="bar-fill" style="width:31%;background:rgba(255,209,102,.5)"><span class="bar-pct">31%</span></div></div></div>
+              <div class="bar-row"><div class="bar-label">No ID at hand</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:rgba(74,201,227,.35)"><span class="bar-pct">18%</span></div></div></div>
+              <div class="bar-row"><div class="bar-label">Other</div><div class="bar-track"><div class="bar-fill" style="width:3%;background:rgba(255,255,255,.15)"><span class="bar-pct">3%</span></div></div></div>
+            </div>
+          </div>
+          <!-- Mini chart: Support tickets -->
+          <div class="chart-card" style="flex:0 0 auto">
+            <div class="chart-title">Support Volume — Understanding questions</div>
+            <div style="display:flex;align-items:center;gap:16px;padding:8px 0;">
+              <div style="flex:1">
+                <div style="height:12px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden;">
+                  <div style="width:19.9%;height:100%;background:linear-gradient(90deg,#2BB8D0,var(--cyan));border-radius:100px;box-shadow:0 0 8px rgba(74,201,227,.4)"></div>
+                </div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-size:20px;font-weight:800;color:var(--cyan);text-shadow:0 0 14px rgba(74,201,227,.5)">21,391</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.35)">19.9% of total volume/month</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="prob-block">
-        <div class="prob-block-title"><i class="bi bi-search"></i> Why do they leave? The evidence</div>
-        <div class="prob-points">
-          <div class="prob-point">
-            <span class="prob-num">02</span>
-            <div>
-              <div class="prob-pt">Card Barrier Study <span style="color:rgba(255,255,255,.35);font-weight:500">(n=92)</span></div>
-              <div class="prob-pd"><span style="color:var(--cyan);font-weight:700">26%</span> don't understand why their data is being requested. <span style="color:var(--cyan);font-weight:700">22%</span> fear fraud. "I'll do it later" is an escape mechanism — not a lack of time.</div>
-            </div>
-          </div>
-          <div class="prob-point">
-            <span class="prob-num">03</span>
-            <div>
-              <div class="prob-pt">Support tickets: <span style="color:var(--cyan)">21,391/month</span></div>
-              <div class="prob-pd">19.9% of total support volume are product understanding questions — users who arrived without knowing what Aplazo is.</div>
-            </div>
-          </div>
-          <div class="prob-point">
-            <span class="prob-num">04</span>
-            <div>
-              <div class="prob-pt">Central hypothesis</div>
-              <div class="prob-pd" style="color:rgba(255,255,255,.65)">It's not technical friction — it's a lack of <strong style="color:var(--n-0)">intent</strong> and <strong style="color:var(--n-0)">guidance</strong>.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -759,55 +851,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
   <div id="pnl-solucion" class="pnl">
     <div class="sol-scroll">
 
-      <!-- Proof that guidance works -->
-      <div class="sol-section">
-        <div class="sol-section-label"><i class="bi bi-check-circle-fill"></i> Proof that guidance works</div>
-        <div class="sol-proof-grid">
-          <div class="sol-proof-card">
-            <div class="sol-proof-val">9x</div>
-            <div class="sol-proof-title">Registration completion</div>
-            <div class="sol-proof-desc">Users with full informational guidance complete at <strong>36.26%</strong> vs <strong>3.97%</strong> organic — 9x more.</div>
-          </div>
-          <div class="sol-proof-card">
-            <div class="sol-proof-val">6x</div>
-            <div class="sol-proof-title">Ambassador storefronts</div>
-            <div class="sol-proof-desc">Storefronts with an ambassador: <strong>6.1 new customers/store/month</strong> vs <strong>1.0 in BAU</strong> — 6x more conversion.</div>
-          </div>
-          <div class="sol-proof-card" style="grid-column:1/-1">
-            <div class="sol-proof-desc" style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;">The mechanism is the same: <strong style="color:var(--n-0)">someone who explains, builds trust and accompanies at the right moment.</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scale problem -->
-      <div class="sol-section">
-        <div class="sol-section-label"><i class="bi bi-exclamation-triangle-fill"></i> The scale problem</div>
-        <div class="prob-points">
-          <div class="prob-point">
-            <span class="prob-num">01</span>
-            <div>
-              <div class="prob-pt">Only 10% of users contact support during registration</div>
-              <div class="prob-pd">The vast majority struggle alone — without asking for help.</div>
-            </div>
-          </div>
-          <div class="prob-point">
-            <span class="prob-num">02</span>
-            <div>
-              <div class="prob-pt">Ambassadors only operate in physical stores</div>
-              <div class="prob-pd">The most effective conversion tool doesn't exist in the digital channel.</div>
-            </div>
-          </div>
-          <div class="prob-point">
-            <span class="prob-num">03</span>
-            <div>
-              <div class="prob-pt"><span style="color:var(--cyan);font-weight:700">~124,000 users/month</span> get stuck in signup with no contact</div>
-              <div class="prob-pd">Nobody reaches out. No nudge, no guidance, no recovery.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- The solution -->
+      <!-- THE SOLUTION FIRST -->
       <div class="sol-section">
         <div class="sol-section-label"><i class="bi bi-robot"></i> The solution: proactive AI assistant</div>
         <div class="sol-banner-new">
@@ -817,6 +861,65 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
             <p class="pr-bt">Proactive, on WhatsApp — educates before asking for data and accompanies throughout the entire process. Not reactive: <strong style="color:var(--n-0)">if the user gets stuck, we follow up and guide them to complete their registration.</strong></p>
           </div>
         </div>
+        <!-- THE MECHANISM QUOTE -->
+        <div class="mechanism-quote">
+          <i class="bi bi-quote"></i>
+          The mechanism is the same: someone who explains, builds trust and accompanies at the right moment.
+        </div>
+      </div>
+
+      <!-- WHY IT WORKS: proof + chart side by side -->
+      <div class="sol-section">
+        <div class="sol-section-label"><i class="bi bi-check-circle-fill"></i> Why it works — the evidence</div>
+        <div class="sol-proof-row">
+          <div class="sol-proof-cards-col">
+            <div class="sol-proof-card">
+              <div class="sol-proof-val">9x</div>
+              <div class="sol-proof-title">Registration completion</div>
+              <div class="sol-proof-desc">With guidance: <strong>36.26%</strong> vs <strong>3.97%</strong> organic.</div>
+            </div>
+          </div>
+          <!-- Impact bar chart -->
+          <div class="chart-card" style="flex:1">
+            <div class="chart-title">Registration completion rate — with vs without guidance</div>
+            <div class="bar-chart" style="gap:14px;">
+              <div class="bar-row">
+                <div class="bar-label">Organic (no guidance)</div>
+                <div class="bar-track" style="height:32px;">
+                  <div class="bar-fill" style="width:3.97%;height:100%;background:rgba(255,255,255,.15);display:flex;align-items:center;">
+                    <span class="bar-pct" style="white-space:nowrap;margin-left:4px;">3.97%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">With informational support</div>
+                <div class="bar-track" style="height:32px;">
+                  <div class="bar-fill" style="width:100%;height:100%;display:flex;align-items:center;">
+                    <span class="bar-pct">17.54%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.25);text-align:right;">Scale: 0% → 17.54%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scale problem -->
+      <div class="sol-section">
+        <div class="sol-section-label"><i class="bi bi-exclamation-triangle-fill"></i> The scale problem today</div>
+        <div class="prob-points" style="display:grid;grid-template-columns:repeat(2,1fr);gap:11px;">
+          <div class="sol-proof-card" style="gap:6px">
+            <div style="font-size:28px;font-weight:800;color:var(--cyan);text-shadow:0 0 16px rgba(74,201,227,.5)">10%</div>
+            <div style="font-size:12px;font-weight:700;color:var(--n-0)">Contact support</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.35)">The vast majority struggle alone.</div>
+          </div>
+          <div class="sol-proof-card" style="gap:6px">
+            <div style="font-size:28px;font-weight:800;color:var(--cyan);text-shadow:0 0 16px rgba(74,201,227,.5)">~124K</div>
+            <div style="font-size:12px;font-weight:700;color:var(--n-0)">Users stuck/month</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.35)">No nudge. No guidance. No recovery.</div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -824,59 +927,67 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- IMPACT -->
   <div id="pnl-impacto" class="pnl">
-    <div class="imp-wrap">
+    <div class="imp-wrap" style="max-width:900px;gap:18px;">
 
-      <div class="imp-headline">
-        <div class="prob-label">Opportunity window</div>
-        <h2 class="prob-h2">What does <em>ActivaBot</em> unlock?</h2>
-        <p class="prob-lead">If we replicate the guidance model at scale, the incremental impact on new customers and GMV is significant — without changing the product.</p>
+      <!-- KEY TAKEAWAY -->
+      <div class="imp-takeaway">
+        <div class="imp-takeaway-label">Key Takeaway</div>
+        <div class="imp-takeaway-text">Replicating guidance at scale could unlock <em>up to $50.9M MXN/year</em> in incremental GMV — without changing the product.</div>
       </div>
 
-      <div class="sol-table-wrap">
-        <table class="sol-table">
-          <thead>
-            <tr>
-              <th>Scenario</th>
-              <th>Resolution rate</th>
-              <th>Incremental NCs/month</th>
-              <th>Incremental GMV/year</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="sol-tr-base">
-              <td>Base without intervention</td>
-              <td>4.53%</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td>Matches informational support</td>
-              <td class="sol-td-hl">17.54%</td>
-              <td class="sol-td-hl">+4,083</td>
-              <td class="sol-td-hl">$50.9M MXN</td>
-            </tr>
-            <tr>
-              <td>Matches ambassador (6.1x)</td>
-              <td class="sol-td-top">24.2%</td>
-              <td class="sol-td-top">+6,173</td>
-              <td class="sol-td-top">$76.9M MXN</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- TABLE + CHART side by side -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="sol-table-wrap">
+          <table class="sol-table">
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Rate</th>
+                <th>+NCs/mo</th>
+                <th>GMV/yr</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="sol-tr-base">
+                <td>Base — no intervention</td>
+                <td>4.53%</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Matches support</td>
+                <td class="sol-td-hl">17.54%</td>
+                <td class="sol-td-hl">+4,083</td>
+                <td class="sol-td-hl">$50.9M</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- GMV bar chart -->
+        <div class="chart-card">
+          <div class="chart-title">Incremental GMV / year (MXN)</div>
+          <div class="bar-chart" style="gap:16px;justify-content:center;">
+            <div class="bar-row">
+              <div class="bar-label">Base</div>
+              <div class="bar-track" style="height:28px;"><div class="bar-fill" style="width:5%;height:100%;background:rgba(255,255,255,.1);"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Matches support</div>
+              <div class="bar-track" style="height:28px;"><div class="bar-fill" style="width:100%;height:100%;display:flex;align-items:center;"><span class="bar-pct">$50.9M</span></div></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="imp-cards">
+      <!-- BULLET EXPLANATIONS -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
         <div class="imp-stat">
-          <div class="imp-stat-val">+6,173</div>
-          <div class="imp-stat-lbl">New customers / month</div>
+          <div class="imp-stat-val">+4,083</div>
+          <div class="imp-stat-lbl">New customers / month matching support guidance</div>
         </div>
         <div class="imp-stat">
-          <div class="imp-stat-val">$76.9M</div>
+          <div class="imp-stat-val">$50.9M</div>
           <div class="imp-stat-lbl">Incremental GMV / year (MXN)</div>
-        </div>
-        <div class="imp-stat">
-          <div class="imp-stat-val">6.1x</div>
-          <div class="imp-stat-lbl">Ambassador conversion multiplier</div>
         </div>
       </div>
 
@@ -959,6 +1070,13 @@ function go(id, btn) {
   document.querySelectorAll('.pnl').forEach(p => p.classList.remove('on'));
   document.querySelectorAll('.tb').forEach(b => b.classList.remove('on'));
   document.getElementById('pnl-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+function goSub(id, btn) {
+  const panel = btn.closest('.pnl');
+  panel.querySelectorAll('.sub-pnl').forEach(p => p.classList.remove('on'));
+  panel.querySelectorAll('.stb').forEach(b => b.classList.remove('on'));
+  document.getElementById('sub-' + id).classList.add('on');
   btn.classList.add('on');
 }
 </script>
