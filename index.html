@@ -910,10 +910,10 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
   pointer-events: none;
 }
 .demo-qr-img {
-  width: 160px; height: 160px; border-radius: 14px;
-  border: 3px solid rgba(74,201,227,.4);
-  box-shadow: 0 0 20px rgba(74,201,227,.2), 0 0 40px rgba(74,201,227,.08);
-  background: #fff; padding: 6px;
+  width: 100px; height: 100px; border-radius: 10px;
+  border: 2px solid rgba(74,201,227,.4);
+  box-shadow: 0 0 14px rgba(74,201,227,.18), 0 0 28px rgba(74,201,227,.07);
+  background: #fff; padding: 4px;
   position: relative; z-index: 1;
 }
 .demo-url-link {
@@ -1388,18 +1388,31 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
             </div>
             <div style="width:52px"></div>
           </div>
-          <div class="demo-v2-body">
+          <div class="demo-v2-body" style="flex-direction:column;gap:16px;padding:16px;">
             <div class="demo-v2-rings">
               <div class="demo-ring demo-ring-1"></div>
               <div class="demo-ring demo-ring-2"></div>
               <div class="demo-ring demo-ring-3"></div>
             </div>
-            <div class="demo-v2-center" style="flex-direction:row;gap:48px;align-items:center;">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;z-index:2;">
-                <div class="demo-v2-title">Live Demo</div>
+
+            <!-- Video embed -->
+            <div style="position:relative;z-index:2;width:100%;max-width:700px;border-radius:12px;overflow:hidden;border:1px solid rgba(74,201,227,.2);box-shadow:0 0 24px rgba(74,201,227,.1);">
+              <iframe
+                src="https://drive.google.com/file/d/1gHhU3LgBIn33zCDk1CLsVFQ6NgR0ba2c/preview"
+                width="100%"
+                height="360"
+                allow="autoplay"
+                style="display:block;border:none;background:var(--black);"
+              ></iframe>
+            </div>
+
+            <!-- URL + QR row below video -->
+            <div style="display:flex;align-items:center;gap:24px;position:relative;z-index:2;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <div class="demo-v2-title" style="font-size:22px;">Live Demo</div>
                 <a href="https://wa.me/525597082819?text=¡Hola!" target="_blank"
-                  style="display:inline-flex;align-items:center;gap:8px;background:rgba(74,201,227,.08);border:1px solid rgba(74,201,227,.35);color:var(--cyan);font-family:monospace;font-size:12px;font-weight:600;padding:10px 18px;border-radius:10px;text-decoration:none;letter-spacing:.3px;box-shadow:0 0 14px rgba(74,201,227,.1);">
-                  <i class="bi bi-whatsapp" style="font-size:15px;"></i>
+                  style="display:inline-flex;align-items:center;gap:7px;background:rgba(74,201,227,.08);border:1px solid rgba(74,201,227,.35);color:var(--cyan);font-family:monospace;font-size:11px;font-weight:600;padding:7px 14px;border-radius:10px;text-decoration:none;letter-spacing:.3px;box-shadow:0 0 14px rgba(74,201,227,.1);">
+                  <i class="bi bi-whatsapp" style="font-size:13px;"></i>
                   wa.me/525597082819?text=¡Hola!
                 </a>
               </div>
