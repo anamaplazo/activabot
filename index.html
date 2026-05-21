@@ -975,6 +975,26 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
   border-radius: 100px; letter-spacing: .5px;
   box-shadow: 0 0 14px rgba(74,201,227,.15);
 }
+.ty-big-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: var(--black-3); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px; padding: 14px 10px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.ty-big-card:hover {
+  border-color: rgba(74,201,227,.4); transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(74,201,227,.1);
+}
+.ty-big-card img {
+  width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+  box-shadow: 0 0 0 2px var(--cyan), 0 0 0 4px var(--black-3), 0 0 14px rgba(74,201,227,.3);
+}
+.ty-big-name {
+  font-size: 12px; font-weight: 700; color: var(--n-0); text-align: center;
+}
+.ty-big-role {
+  font-size: 10px; color: rgba(255,255,255,.35); text-align: center; line-height: 1.4;
+}
 
 /* ─── FOCUS / A11Y ───────────────────────────────── */
 *:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
@@ -1072,53 +1092,46 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- PROBLEM -->
   <div id="pnl-problema" class="pnl">
-    <!-- sub-tabs -->
+    <!-- sub-tabs: 3 slides -->
     <div class="sub-tabs">
-      <button class="stb on" onclick="goSub('prob1',this)">1 · The Problem</button>
+      <button class="stb on" onclick="goSub('prob1',this)">1 · The Funnel</button>
       <button class="stb"    onclick="goSub('prob2',this)">2 · Hypothesis & Evidence</button>
     </div>
 
-    <!-- SUB 1: The Problem -->
+    <!-- ── SUB 1: FUNNEL ── -->
     <div id="sub-prob1" class="sub-pnl on">
-      <div class="prob-two-col">
+      <div class="prob-two-col" style="grid-template-columns:1fr 1.4fr;">
         <div class="prob-left">
-          <div class="prob-label">The Problem</div>
-          <h2 class="prob-h2">The digital channel <em>leaves users alone</em></h2>
-          <p class="prob-lead">Unlike a physical store, in digital there's nobody walking the user through registration. The result: massive losses in the funnel without the product ever failing.</p>
-          <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
-            <div class="prob-point" style="padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)">
-              <span class="prob-num">01</span>
-              <div><div class="prob-pt">−32,762 users/month drop before KYC</div><div class="prob-pd">Zero technical friction — the product didn't fail.</div></div>
-            </div>
-            <div class="prob-point" style="padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)">
-              <span class="prob-num">02</span>
-              <div><div class="prob-pt">26% don't understand why data is needed</div><div class="prob-pd">22% fear fraud. "I'll do it later" is an escape, not a lack of time.</div></div>
-            </div>
-            <div class="prob-point">
-              <span class="prob-num">03</span>
-              <div><div class="prob-pt">~124,000 users/month stuck with no contact</div><div class="prob-pd">No nudge, no guidance, no recovery flow.</div></div>
-            </div>
+          <div class="prob-label">The Funnel</div>
+          <h2 class="prob-h2">32,000 users leave <em>before we even evaluate them</em></h2>
+          <p class="prob-lead">The biggest drop isn't at credit evaluation — it's before. No rejection on our end. The product didn't fail.</p>
+          <div style="margin-top:16px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2);border-radius:12px;padding:14px 16px;">
+            <div style="font-size:22px;font-weight:800;color:#ff6b6b;margin-bottom:4px;">−32,762 users/month</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.5);">Started → KYC Evaluation · −25% · <strong style="color:#ff6b6b">NOT our rejection</strong></div>
+          </div>
+          <div style="margin-top:12px;background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.2);border-radius:12px;padding:12px 16px;">
+            <div style="font-size:13px;font-weight:700;color:#ffd166;margin-bottom:3px;">⏱ Signup designed for under 5 min</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.45);">47% of users take longer — that's <strong style="color:#ffd166">~45,000 users/month</strong> experiencing friction we haven't solved yet.</div>
           </div>
         </div>
         <div class="prob-right">
-          <div class="chart-card">
+          <div class="chart-card" style="flex:1;">
             <div class="chart-title">Monthly Average Funnel 2026 (Jan–Apr)</div>
-            <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+            <div style="display:flex;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
               <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#4AC9E3;display:inline-block"></span> Normal drop</span>
-              <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#ff6b6b;display:inline-block"></span> NOT our rejection</span>
-              <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#ffd166;display:inline-block"></span> Partial rejection</span>
+              <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#ff6b6b;display:inline-block"></span> Abandoned (not rejected)</span>
+              <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.35)"><span style="width:8px;height:8px;border-radius:50%;background:#ffd166;display:inline-block"></span> Partial / credit rejection</span>
             </div>
-            <div style="position:relative;width:100%;height:320px;">
-              <canvas id="funnelChart" role="img" aria-label="Registration funnel chart showing user drop-off at each step from 131,156 started to 17,168 purchases">Funnel: Started 131,156 → KYC Evaluation 98,394 → KYC Verified 83,860 → Personal Info 79,033 → Requested Loan 38,236 → Purchase 17,168</canvas>
+            <div style="position:relative;width:100%;height:300px;">
+              <canvas id="funnelChart"></canvas>
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
             <script>
             (function(){
-              var labels = ['Started signup','KYC Evaluation','KYC Verified','Personal Info','Requested loan','Purchase'];
-              var values = [131156, 98394, 83860, 79033, 38236, 17168];
-              var drops  = ['—', '-32,762 · -25% · NOT our rejection', '-14,534 · -14.8%', '-4,827 · -5.8%', '-21,803 · -36.6%', '-21,068 · -55.1% · NOT our rejection'];
-              var colors = ['#4AC9E3','#ff6b6b','#4AC9E3','#4AC9E3','#ffd166','#ff6b6b'];
-              var max = 131156;
+              var labels = ['Started signup','KYC Evaluation','KYC Verified','Personal Info','Credit eval.','Credit approved','Requested loan','Purchase'];
+              var values = [131156, 98394, 83860, 79033, 78948, 50039, 38236, 17168];
+              var drops  = ['131,156 users', '−32,762 · −25% · NOT our rejection', '−14,534 · −14.8% · Partial', '−4,827 · −5.8% · Not ours', '−85 · ~0%', '−28,909 · −36.6% · Credit rejection (Yes)', '−11,803 · −23.6% · Partial', '−21,068 · −55.1% · NOT our rejection'];
+              var colors = ['#4AC9E3','#ff6b6b','#4AC9E3','#4AC9E3','#4AC9E3','rgba(255,209,102,.7)','rgba(255,209,102,.5)','#ff6b6b'];
               var ctx = document.getElementById('funnelChart').getContext('2d');
               new Chart(ctx, {
                 type: 'bar',
@@ -1128,7 +1141,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
                     data: values,
                     backgroundColor: colors,
                     borderRadius: 4,
-                    barPercentage: 0.75,
+                    barPercentage: 0.72,
                   }]
                 },
                 options: {
@@ -1139,26 +1152,22 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
                     legend: { display: false },
                     tooltip: {
                       callbacks: {
-                        label: function(ctx) {
-                          return ' ' + ctx.parsed.x.toLocaleString() + ' users';
-                        },
-                        afterLabel: function(ctx) {
-                          return drops[ctx.dataIndex];
-                        }
+                        label: function(c){ return ' ' + c.parsed.x.toLocaleString() + ' users'; },
+                        afterLabel: function(c){ return drops[c.dataIndex]; }
                       }
                     }
                   },
                   scales: {
                     x: {
-                      max: max * 1.08,
-                      grid: { color: 'rgba(255,255,255,.05)' },
-                      ticks: { color: 'rgba(255,255,255,.35)', font: { size: 10 }, callback: function(v){ return (v/1000).toFixed(0)+'k'; } },
-                      border: { color: 'rgba(255,255,255,.08)' }
+                      max: 131156 * 1.1,
+                      grid: { color: 'rgba(255,255,255,.04)' },
+                      ticks: { color: 'rgba(255,255,255,.3)', font: { size: 9 }, callback: function(v){ return (v/1000).toFixed(0)+'k'; } },
+                      border: { color: 'rgba(255,255,255,.06)' }
                     },
                     y: {
                       grid: { display: false },
-                      ticks: { color: 'rgba(255,255,255,.6)', font: { size: 11 } },
-                      border: { color: 'rgba(255,255,255,.08)' }
+                      ticks: { color: 'rgba(255,255,255,.6)', font: { size: 10 } },
+                      border: { color: 'rgba(255,255,255,.06)' }
                     }
                   }
                 }
@@ -1170,44 +1179,51 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
       </div>
     </div>
 
-    <!-- SUB 2: Hypothesis & Evidence -->
+    <!-- ── SUB 2: HYPOTHESIS ── -->
     <div id="sub-prob2" class="sub-pnl">
-      <div class="prob-two-col">
+      <div class="prob-two-col" style="grid-template-columns:1fr 1.2fr;align-items:start;">
         <div class="prob-left">
-          <div class="prob-label">Our Hypothesis</div>
-          <h2 class="prob-h2" style="font-size:26px">It's not technical friction —<br>it's a lack of <em>intent & guidance</em></h2>
-          <p class="prob-lead" style="margin-top:10px">The data points to one clear pattern: users who receive guidance complete at dramatically higher rates. The problem is behavioral, not technical.</p>
-          <div style="margin-top:18px;display:flex;flex-direction:column;gap:8px;">
-            <div class="evid-item"><i class="bi bi-dot" style="color:var(--cyan);font-size:20px"></i><span><strong style="color:var(--n-0)">Card Barrier Study:</strong> 26% don't understand data requests · 22% fear fraud</span></div>
-            <div class="evid-item"><i class="bi bi-dot" style="color:var(--cyan);font-size:20px"></i><span><strong style="color:var(--n-0)">21,391 support tickets/month</strong> (19.9%) are product understanding questions</span></div>
+          <div class="prob-label">Hypothesis & Evidence</div>
+          <h2 class="prob-h2">Lack of <em>intent</em> &<br>lack of <em>trust</em></h2>
+          <p class="prob-lead" style="margin-top:10px;">If you don't have a clear reason to be there, everything becomes a barrier. If you don't trust us yet, you won't share your information. They don't know Aplazo yet.</p>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div style="background:rgba(255,107,107,.07);border:1px solid rgba(255,107,107,.18);border-radius:12px;padding:14px;text-align:center;">
+                <div style="font-size:28px;margin-bottom:6px;">🚧</div>
+                <div style="font-size:13px;font-weight:800;color:var(--n-0);margin-bottom:4px;">No intent</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.4;">Arrived without understanding what Aplazo is.</div>
+              </div>
+              <div style="background:rgba(255,209,102,.07);border:1px solid rgba(255,209,102,.18);border-radius:12px;padding:14px;text-align:center;">
+                <div style="font-size:28px;margin-bottom:6px;">🔒</div>
+                <div style="font-size:13px;font-weight:800;color:var(--n-0);margin-bottom:4px;">No trust</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.4;">Sharing ID and financial data feels risky.</div>
+              </div>
+            </div>
+            <div style="background:rgba(74,201,227,.06);border:1px solid rgba(74,201,227,.14);border-radius:12px;padding:12px 14px;">
+              <div style="font-size:20px;font-weight:800;color:var(--cyan);text-shadow:0 0 12px rgba(74,201,227,.5);margin-bottom:3px;">21,000<span style="font-size:12px;color:rgba(255,255,255,.35);font-weight:500;"> /month</span></div>
+              <div style="font-size:11px;color:rgba(255,255,255,.4);">Users contact support just to ask what Aplazo is — 19.9% of total volume.</div>
+            </div>
+            <div style="background:rgba(255,107,107,.05);border:1px solid rgba(255,107,107,.12);border-radius:12px;padding:12px 14px;">
+              <div style="font-size:20px;font-weight:800;color:#ff6b6b;margin-bottom:3px;">1 in 10</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.4);">Users who get stuck actually contact us. <strong style="color:var(--n-0);">The other 9 leave quietly.</strong></div>
+            </div>
           </div>
         </div>
-        <div class="prob-right" style="display:flex;flex-direction:column;gap:12px;">
-          <!-- Bar chart: Card Barrier -->
-          <div class="chart-card" style="flex:1">
-            <div class="chart-title">Card Barrier Study — Why users abandon</div>
-            <div class="bar-chart">
-              <div class="bar-row"><div class="bar-label">Don't understand data use</div><div class="bar-track"><div class="bar-fill" style="width:26%"><span class="bar-pct">26%</span></div></div></div>
-              <div class="bar-row"><div class="bar-label">Fear of fraud</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:rgba(255,107,107,.6)"><span class="bar-pct">22%</span></div></div></div>
-              <div class="bar-row"><div class="bar-label">"I'll do it later"</div><div class="bar-track"><div class="bar-fill" style="width:31%;background:rgba(255,209,102,.5)"><span class="bar-pct">31%</span></div></div></div>
+        <div class="prob-right" style="display:flex;flex-direction:column;gap:10px;">
+          <div class="chart-card" style="flex:1;">
+            <div class="chart-title">Card Barrier Study (MKT) — Why users don't add their card</div>
+            <div class="bar-chart" style="gap:11px;margin-top:8px;">
+              <div class="bar-row"><div class="bar-label">Don't understand why data is needed</div><div class="bar-track"><div class="bar-fill" style="width:26%"><span class="bar-pct">26%</span></div></div></div>
+              <div class="bar-row"><div class="bar-label">Fear of fraud</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:rgba(255,107,107,.65)"><span class="bar-pct">22%</span></div></div></div>
+              <div class="bar-row"><div class="bar-label">"I'll do it later" (escape mechanism)</div><div class="bar-track"><div class="bar-fill" style="width:31%;background:rgba(255,209,102,.55)"><span class="bar-pct">31%</span></div></div></div>
               <div class="bar-row"><div class="bar-label">No ID at hand</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:rgba(74,201,227,.35)"><span class="bar-pct">18%</span></div></div></div>
               <div class="bar-row"><div class="bar-label">Other</div><div class="bar-track"><div class="bar-fill" style="width:3%;background:rgba(255,255,255,.15)"><span class="bar-pct">3%</span></div></div></div>
             </div>
+            <div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.22);font-style:italic;">Source: MKT Card Barrier Study — shoutout to Rix for sharing the customer voice</div>
           </div>
-          <!-- Mini chart: Support tickets -->
-          <div class="chart-card" style="flex:0 0 auto">
-            <div class="chart-title">Support Volume — Understanding questions</div>
-            <div style="display:flex;align-items:center;gap:16px;padding:8px 0;">
-              <div style="flex:1">
-                <div style="height:12px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden;">
-                  <div style="width:19.9%;height:100%;background:linear-gradient(90deg,#2BB8D0,var(--cyan));border-radius:100px;box-shadow:0 0 8px rgba(74,201,227,.4)"></div>
-                </div>
-              </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-size:20px;font-weight:800;color:var(--cyan);text-shadow:0 0 14px rgba(74,201,227,.5)">21,391</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.35)">19.9% of total volume/month</div>
-              </div>
-            </div>
+          <div class="mechanism-quote">
+            <i class="bi bi-quote"></i>
+            It's not technical friction — it's behavioral. The product didn't fail. The user wasn't ready.
           </div>
         </div>
       </div>
@@ -1216,110 +1232,60 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- SOLUTION -->
   <div id="pnl-solucion" class="pnl">
-    <div class="sol-scroll">
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;max-width:960px;margin:0 auto;width:100%;">
 
-      <!-- STEP 1: THE GAP -->
-      <div class="sol-step-row">
-        <div class="sol-step-num">01</div>
-        <div class="sol-step-body">
-          <div class="sol-step-title">The gap we're solving</div>
-          <div class="sol-step-three">
-            <div class="sol-gap-card">
-              <div class="sol-gap-val" style="color:#ff6b6b">~124K</div>
-              <div class="sol-gap-lbl">users get stuck in signup every month</div>
-            </div>
-            <div class="sol-gap-card">
-              <div class="sol-gap-val">10%</div>
-              <div class="sol-gap-lbl">only 1 in 10 asks for help</div>
-            </div>
-            <div class="sol-gap-card">
-              <div class="sol-gap-val" style="color:#ff6b6b">0</div>
-              <div class="sol-gap-lbl">proactive digital follow-ups today</div>
-            </div>
-          </div>
-        </div>
+      <!-- Title -->
+      <div>
+        <div class="prob-label">The Solution</div>
+        <h2 class="prob-h2" style="font-size:26px;">Activa<em>Bot</em></h2>
       </div>
 
-      <!-- STEP 2: THE SOLUTION -->
-      <div class="sol-step-row">
-        <div class="sol-step-num">02</div>
-        <div class="sol-step-body">
-          <div class="sol-step-title">What ActivaBot does</div>
-          <div class="sol-banner-new">
-            <div class="sol-ico"><i class="bi bi-whatsapp"></i></div>
-            <div>
-              <div class="pr-bh">A proactive AI assistant on WhatsApp</div>
-              <p class="pr-bt">Educates before asking for data and accompanies throughout the entire registration. Not reactive — <strong style="color:var(--n-0)">if the user gets stuck, we follow up and guide them to complete their registration.</strong></p>
-            </div>
+      <!-- Three pillars -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+        <!-- Pillar 1 -->
+        <div style="background:var(--black-3);border:1px solid rgba(74,201,227,.2);border-radius:14px;padding:16px 16px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-20px;right:-20px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(74,201,227,.07) 0%,transparent 70%);pointer-events:none;"></div>
+          <div style="width:38px;height:38px;border-radius:9px;background:rgba(74,201,227,.12);border:1px solid rgba(74,201,227,.22);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📡</div>
+          <div>
+            <div style="font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.3px;margin-bottom:5px;opacity:.7;">Pillar 01</div>
+            <div style="font-size:14px;font-weight:800;color:var(--n-0);margin-bottom:6px;line-height:1.2;">Open the channel</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.42);line-height:1.55;">A new path to signup for users who don't finish in 5 minutes. We reach out — they don't have to come back on their own.</div>
           </div>
         </div>
+
+        <!-- Pillar 2 -->
+        <div style="background:var(--black-3);border:1px solid rgba(74,201,227,.2);border-radius:14px;padding:16px 16px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-20px;right:-20px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(74,201,227,.07) 0%,transparent 70%);pointer-events:none;"></div>
+          <div style="width:38px;height:38px;border-radius:9px;background:rgba(74,201,227,.12);border:1px solid rgba(74,201,227,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi bi-whatsapp" style="color:#25D366;font-size:16px;"></i></div>
+          <div>
+            <div style="font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.3px;margin-bottom:5px;opacity:.7;">Pillar 02</div>
+            <div style="font-size:14px;font-weight:800;color:var(--n-0);margin-bottom:6px;line-height:1.2;">Proactive follow-up</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.42);line-height:1.55;">If you get stuck, we follow up on WhatsApp. Not reactive — we detect the drop and reach out first.</div>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div style="background:var(--black-3);border:1px solid rgba(74,201,227,.2);border-radius:14px;padding:16px 16px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-20px;right:-20px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(74,201,227,.07) 0%,transparent 70%);pointer-events:none;"></div>
+          <div style="width:38px;height:38px;border-radius:9px;background:rgba(74,201,227,.12);border:1px solid rgba(74,201,227,.22);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🛠️</div>
+          <div>
+            <div style="font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.3px;margin-bottom:5px;opacity:.7;">Pillar 03</div>
+            <div style="font-size:14px;font-weight:800;color:var(--n-0);margin-bottom:6px;line-height:1.2;">Give agents the tools</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.42);line-height:1.55;">Not just informational — the bot walks through each step <em style="color:rgba(255,255,255,.65);">with</em> the user. Real tools: ID verification, real-time data.</div>
+          </div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;">
+            <span style="background:rgba(74,201,227,.1);border:1px solid rgba(74,201,227,.18);color:var(--cyan);font-size:9px;font-weight:600;padding:2px 8px;border-radius:100px;">ID verification</span>
+            <span style="background:rgba(74,201,227,.1);border:1px solid rgba(74,201,227,.18);color:var(--cyan);font-size:9px;font-weight:600;padding:2px 8px;border-radius:100px;">Real-time data</span>
+          </div>
+        </div>
+
       </div>
 
-      <!-- STEP 3: WHY IT WORKS -->
-      <div class="sol-step-row">
-        <div class="sol-step-num">03</div>
-        <div class="sol-step-body">
-          <div class="sol-step-title">Why it works — guidance multiplies completion</div>
-          <div class="sol-evidence-row">
-            <!-- Big stat -->
-            <div class="sol-big-stat">
-              <div class="sol-big-num">9x</div>
-              <div class="sol-big-desc">Users with informational guidance complete their registration at <span style="color:var(--cyan);font-weight:700">36.26%</span> vs <span style="color:rgba(255,255,255,.5);font-weight:700">3.97%</span> organic — 9x more</div>
-            </div>
-            <!-- Chart.js bar -->
-            <div class="chart-card" style="flex:1">
-              <div class="chart-title">Registration completion rate — Today vs with ActivaBot</div>
-              <div style="position:relative;width:100%;height:120px;">
-                <canvas id="solChart" role="img" aria-label="Bar chart: today 3.97%, with support 17.54%, with ActivaBot 36.26%">Today: 3.97%. With support: 17.54%. With ActivaBot: 36.26%.</canvas>
-              </div>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-              <script>
-              (function(){
-                var ctx = document.getElementById('solChart');
-                if(!ctx) return;
-                new Chart(ctx, {
-                  type: 'bar',
-                  data: {
-                    labels: ['Today', 'With support', 'With ActivaBot'],
-                    datasets: [{
-                      data: [3.97, 17.54, 36.26],
-                      backgroundColor: ['rgba(255,255,255,.15)', 'rgba(74,201,227,.45)', '#4AC9E3'],
-                      borderRadius: 6,
-                      barPercentage: 0.55,
-                    }]
-                  },
-                  options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: { display: false },
-                      tooltip: {
-                        callbacks: { label: function(c){ return ' ' + c.parsed.y.toFixed(2) + '%'; } }
-                      }
-                    },
-                    scales: {
-                      x: {
-                        grid: { display: false },
-                        ticks: { color: 'rgba(255,255,255,.5)', font: { size: 11 } },
-                        border: { color: 'rgba(255,255,255,.08)' }
-                      },
-                      y: {
-                        grid: { color: 'rgba(255,255,255,.05)' },
-                        ticks: { color: 'rgba(255,255,255,.35)', font: { size: 10 }, callback: function(v){ return v + '%'; } },
-                        border: { color: 'rgba(255,255,255,.08)' }
-                      }
-                    }
-                  }
-                });
-              })();
-              </script>
-              <div class="mechanism-quote" style="margin-top:10px;">
-                <i class="bi bi-quote"></i>
-                The mechanism is the same: someone who explains, builds trust and accompanies at the right moment.
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Hero quote -->
+      <div class="mechanism-quote" style="font-size:13px;font-weight:700;padding:12px 16px;border-left-width:3px;">
+        <i class="bi bi-quote" style="font-size:16px;"></i>
+        <span>The mechanism is the same: someone who <em style="color:var(--cyan);font-style:normal;">explains</em>, builds <em style="color:var(--cyan);font-style:normal;">trust</em>, and is there at the <em style="color:var(--cyan);font-style:normal;">right moment</em>.</span>
       </div>
 
     </div>
@@ -1327,68 +1293,69 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
 
   <!-- IMPACT -->
   <div id="pnl-impacto" class="pnl">
-    <div class="imp-wrap" style="max-width:900px;gap:18px;">
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:11px;max-width:960px;margin:0 auto;width:100%;">
 
-      <!-- KEY TAKEAWAY -->
-      <div class="imp-takeaway">
-        <div class="imp-takeaway-label">Key Takeaway</div>
-        <div class="imp-takeaway-text">Replicating guidance at scale could unlock <em>up to $50.9M MXN/year</em> in incremental GMV — without changing the product.</div>
+      <!-- TOP: Context -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:10px 16px;display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:flex-start;gap:7px;flex:1;min-width:240px;">
+          <span style="color:var(--cyan);font-size:12px;margin-top:1px;">◆</span>
+          <div style="font-size:11px;color:rgba(255,255,255,.42);line-height:1.5;"><strong style="color:rgba(255,255,255,.65);">~124,000 users/month</strong> get stuck in signup (2h–24h, no support contact)</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:7px;flex:1;min-width:240px;">
+          <span style="color:var(--cyan);font-size:12px;margin-top:1px;">◆</span>
+          <div style="font-size:11px;color:rgba(255,255,255,.42);line-height:1.5;"><strong style="color:rgba(255,255,255,.65);">Benchmark: Physical ambassador → 6x</strong> more new customers vs BAU — <em style="color:rgba(255,255,255,.55);">"someone who explains, builds trust, and is there at the right moment"</em></div>
+        </div>
       </div>
 
-      <!-- TABLE + CHART side by side -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div class="sol-table-wrap">
-          <table class="sol-table">
-            <thead>
-              <tr>
-                <th>Scenario</th>
-                <th>Rate</th>
-                <th>+NCs/mo</th>
-                <th>GMV/yr</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="sol-tr-base">
-                <td>Base — no intervention</td>
-                <td>4.53%</td>
-                <td>—</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Matches support</td>
-                <td class="sol-td-hl">17.54%</td>
-                <td class="sol-td-hl">+4,083</td>
-                <td class="sol-td-hl">$50.9M</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- GMV bar chart -->
-        <div class="chart-card">
-          <div class="chart-title">Incremental GMV / year (MXN)</div>
-          <div class="bar-chart" style="gap:16px;justify-content:center;">
-            <div class="bar-row">
-              <div class="bar-label">Base</div>
-              <div class="bar-track" style="height:28px;"><div class="bar-fill" style="width:5%;height:100%;background:rgba(255,255,255,.1);"></div></div>
-            </div>
-            <div class="bar-row">
-              <div class="bar-label">Matches support</div>
-              <div class="bar-track" style="height:28px;"><div class="bar-fill" style="width:100%;height:100%;display:flex;align-items:center;"><span class="bar-pct">$50.9M</span></div></div>
-            </div>
+      <!-- BOTTOM: Three big numbers -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+        <!-- Number 1 -->
+        <div style="background:var(--black-3);border:1px solid rgba(74,201,227,.16);border-radius:14px;padding:16px 16px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+          <div style="position:absolute;bottom:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(74,201,227,.06) 0%,transparent 65%);pointer-events:none;"></div>
+          <div>
+            <div style="font-size:44px;font-weight:900;color:var(--cyan);line-height:1;letter-spacing:-1.5px;text-shadow:0 0 20px rgba(74,201,227,.5),0 0 40px rgba(74,201,227,.18);">+6,173</div>
+            <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.5);margin-top:3px;">new customers / month</div>
+          </div>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);">
+            <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.22);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">How we get there</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.3);font-style:italic;line-height:1.4;">124,000 stuck × ambassador completion (24.2%) × activation rate (34%)</div>
           </div>
         </div>
+
+        <!-- Number 2 -->
+        <div style="background:var(--black-3);border:1px solid rgba(74,201,227,.16);border-radius:14px;padding:16px 16px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+          <div style="position:absolute;bottom:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(74,201,227,.06) 0%,transparent 65%);pointer-events:none;"></div>
+          <div>
+            <div style="font-size:44px;font-weight:900;color:var(--cyan);line-height:1;letter-spacing:-1.5px;text-shadow:0 0 20px rgba(74,201,227,.5),0 0 40px rgba(74,201,227,.18);">$6.4M</div>
+            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.38);margin-top:1px;">MXN incremental</div>
+            <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.5);">GMV / month</div>
+          </div>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);">
+            <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.22);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">How we get there</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.3);font-style:italic;line-height:1.4;">6,173 new customers × median first loan ($1,039 MXN)</div>
+          </div>
+        </div>
+
+        <!-- Number 3 -->
+        <div style="background:var(--black-3);border:1px solid rgba(255,209,102,.18);border-radius:14px;padding:16px 16px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+          <div style="position:absolute;bottom:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(255,209,102,.05) 0%,transparent 65%);pointer-events:none;"></div>
+          <div>
+            <div style="font-size:44px;font-weight:900;color:#ffd166;line-height:1;letter-spacing:-1.5px;text-shadow:0 0 18px rgba(255,209,102,.45),0 0 36px rgba(255,209,102,.16);">$350K</div>
+            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.38);margin-top:1px;">MXN support savings</div>
+            <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.5);">/ month</div>
+          </div>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);">
+            <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.22);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">How we get there</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.3);font-style:italic;line-height:1.4;">Deflecting informational tickets in the signup flow</div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- BULLET EXPLANATIONS -->
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
-        <div class="imp-stat">
-          <div class="imp-stat-val">+4,083</div>
-          <div class="imp-stat-lbl">New customers / month matching support guidance</div>
-        </div>
-        <div class="imp-stat">
-          <div class="imp-stat-val">$50.9M</div>
-          <div class="imp-stat-lbl">Incremental GMV / year (MXN)</div>
-        </div>
+      <!-- Footnote -->
+      <div style="font-size:10px;color:rgba(255,255,255,.2);font-style:italic;text-align:center;">
+        Conservative estimate — first loan only. Recurring GMV and LTV not included.
       </div>
 
     </div>
@@ -1571,42 +1538,47 @@ html, body { height: 100%; overflow: hidden; font-family: 'Plus Jakarta Sans', s
     </div>
   </div>
 
+
   <!-- THANK YOU -->
   <div id="pnl-thanks" class="pnl">
     <div class="ty-wrap">
       <div class="ty-glow"></div>
-      <div class="ty-content">
+      <div class="ty-content" style="gap:20px;">
+
         <div class="ty-robot"><i class="bi bi-robot"></i></div>
         <div class="ty-title">Thank <em>You</em></div>
         <div class="ty-sub">Built with ❤️ in 48 hours at Aplazo Hackathon 2026</div>
         <div class="ty-divider"></div>
+
         <div class="ty-team">
           <div class="ty-member">
-            <img src="https://avatars.slack-edge.com/2026-02-17/10557733921760_7fde13f654e4802a933a_original.png" alt="Ana">
+            <img src="https://avatars.slack-edge.com/2026-02-17/10557733921760_7fde13f654e4802a933a_original.png" alt="Ana"/>
             <span>Ana Martínez</span>
           </div>
           <div class="ty-member">
-            <img src="https://avatars.slack-edge.com/2026-02-13/10506847541126_461a7fae533c53189dc6_original.png" alt="Blanca">
+            <img src="https://avatars.slack-edge.com/2026-02-13/10506847541126_461a7fae533c53189dc6_original.png" alt="Blanca"/>
             <span>Blanca Cortés</span>
           </div>
           <div class="ty-member">
-            <img src="https://avatars.slack-edge.com/2022-03-07/3203672999987_2a0df1475972ffafbb54_original.png" alt="Enrique D">
+            <img src="https://avatars.slack-edge.com/2022-03-07/3203672999987_2a0df1475972ffafbb54_original.png" alt="Enrique D"/>
             <span>Enrique Díaz</span>
           </div>
           <div class="ty-member">
-            <img src="https://avatars.slack-edge.com/2025-01-22/8330777832901_c9277d47fa5fb21d1e44_original.png" alt="Enrique P">
+            <img src="https://avatars.slack-edge.com/2025-01-22/8330777832901_c9277d47fa5fb21d1e44_original.png" alt="Enrique P"/>
             <span>Enrique Pérez</span>
           </div>
           <div class="ty-member">
-            <img src="https://avatars.slack-edge.com/2025-06-24/9082774395911_d7f41c9398675a9219e6_original.png" alt="Leonardo">
+            <img src="https://avatars.slack-edge.com/2025-06-24/9082774395911_d7f41c9398675a9219e6_original.png" alt="Leonardo"/>
             <span>Leonardo Rodríguez</span>
           </div>
           <div class="ty-member">
-            <img src="https://avatars.slack-edge.com/2024-08-05/7529503410546_387c4ebdff23d12c9bb0_original.jpg" alt="Omar">
+            <img src="https://avatars.slack-edge.com/2024-08-05/7529503410546_387c4ebdff23d12c9bb0_original.jpg" alt="Omar"/>
             <span>Omar Pérez</span>
           </div>
         </div>
+
         <div class="ty-tag">Team ActivaBot 🤖</div>
+
       </div>
     </div>
   </div>
